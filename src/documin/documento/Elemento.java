@@ -2,7 +2,7 @@ package documin.documento;
 
 import java.util.HashMap;
 
-public abstract class Elemento {
+public abstract class Elemento implements Cloneable {
     protected int prioridade;
     protected String valor;
     protected HashMap<String,String> propriedades;

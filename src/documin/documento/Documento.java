@@ -26,26 +26,43 @@ public class Documento {
         if (tamanho == -1 || elementos.size() < tamanho) {
             elementos.add(new ElementoTexto(valor, prioridade));
         }
-        return elementos.size();
+        return elementos.size() -1;
     }
     int addTitulo(String valor, int prioridade, int nivel, boolean linkavel) {
         if (tamanho == -1 || elementos.size() < tamanho) {
             elementos.add(new ElementoTitulo(valor, prioridade, nivel, linkavel));
         }
-        return elementos.size();
+        return elementos.size() -1;
     }
     int addLista(String valor, int prioridade, String separador, String caractere) {
         if (tamanho == -1 || elementos.size() < tamanho) {
             elementos.add(new ElementoLista(valor, prioridade, separador, caractere));
         }
-        return elementos.size();
+        return elementos.size() -1;
     }
-    int addTermo() {
+    int addTermos(String valor, int prioridade, String separador, String ordem) {
         if (tamanho == -1 || elementos.size() < tamanho) {
-            elementos.add(new ElementoTermo());
+            elementos.add(new ElementoTermos(valor, prioridade, separador, ordem));
         }
-        return elementos.size();
+        return elementos.size() -1;
     }
+
+    int addAtalho(Documento doc) {
+        int sum = 0;
+        for (Elemento el: elementos) {
+            if (el.getClass() == ElementoAtalho.class) throw new IllegalStateException();
+            sum += el.getPrioridade();
+        }
+
+        int prioridade = sum / (elementos.size());
+
+        if (tamanho == -1 || elementos.size() < tamanho) {
+            elementos.add(new ElementoAtalho(doc.getTitulo(), prioridade));
+        }
+        return elementos.size() -1;
+    }
+
+    int
 
     @Override
     public boolean equals(Object o) {
@@ -68,11 +85,6 @@ public class Documento {
         return elementos.size();
     }
 
-    String[] visualizar() {
-        String[] retorno = new String[getNumElementos()];
-
-    }
-
     void moveAcima(int elementoPosicaoReal) {
         if (elementoPosicaoReal == 1) return;
         Elemento temp = elementos.get(elementoPosicaoReal);
@@ -91,4 +103,8 @@ public class Documento {
         }
     }
 
+    public ArrayList<Elemento> getElementos() {
+        ArrayList<Elemento> retorno = new ArrayList<>();
+        for (Elemento el: this.elementos) { retorno.add(el.clone()) }
+    }
 }
