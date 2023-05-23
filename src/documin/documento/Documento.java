@@ -48,16 +48,12 @@ public class Documento {
     }
 
     int addAtalho(Documento doc) {
-        int sum = 0;
         for (Elemento el: elementos) {
             if (el.getClass() == ElementoAtalho.class) throw new IllegalStateException();
-            sum += el.getPrioridade();
         }
 
-        int prioridade = sum / (elementos.size());
-
         if (tamanho == -1 || elementos.size() < tamanho) {
-            elementos.add(new ElementoAtalho(doc.getTitulo(), prioridade));
+            elementos.add(new ElementoAtalho(doc));
         }
         return elementos.size() -1;
     }
@@ -104,7 +100,6 @@ public class Documento {
     }
 
     public ArrayList<Elemento> getElementos() {
-        ArrayList<Elemento> retorno = new ArrayList<>();
-        for (Elemento el: this.elementos) { retorno.add(el.clone()) }
+        return (ArrayList<Elemento>) elementos.clone();
     }
 }
