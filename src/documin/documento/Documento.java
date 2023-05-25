@@ -41,8 +41,16 @@ public class Documento {
         return elementos.size() -1;
     }
     int addTermos(String valor, int prioridade, String separador, String ordem) {
+        Ordem o;
         if (tamanho == -1 || elementos.size() < tamanho) {
-            elementos.add(new ElementoTermos(valor, prioridade, separador, ordem));
+            if (ordem.equalsIgnoreCase("alfabetica") || ordem.equalsIgnoreCase("alfabética")) {
+                o = Ordem.ALFABETICA;
+            } else  if (ordem.equalsIgnoreCase("tamanho")) {
+                o = Ordem.TAMANHO;
+            } else {
+                o = Ordem.NENHUM;
+            }
+            elementos.add(new ElementoTermos(valor, prioridade, separador, o));
         }
         return elementos.size() -1;
     }
@@ -57,9 +65,6 @@ public class Documento {
         }
         return elementos.size() -1;
     }
-
-    int
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -94,12 +99,22 @@ public class Documento {
         elementos.set(elementoPosicaoReal +1, temp);
     }
     void removeElemento(int elementoPosicaoReal) {
-        for (int i = elementoPosicaoReal; i < getNumElementos() -1; i++) {
-            elementos.set(i, elementos.get(i+1));
+        ArrayList<Elemento> novo = new ArrayList<>();
+        for (int i = 0; i < elementos.size(); i++) {
+            if (i == elementoPosicaoReal) { continue;}
+            novo.add(elementos.get(i));
         }
     }
 
     public ArrayList<Elemento> getElementos() {
         return (ArrayList<Elemento>) elementos.clone();
+    }
+
+    public String[] exibir() {
+        String[] retorno = new String[elementos.size()];
+        for (int i = 0; i < elementos.size(); i++) {
+            retorno[i] = elementos.get(i).representacaoCurta();
+        }
+        return retorno;
     }
 }

@@ -7,34 +7,48 @@ public class DocumentoController {
 
     private HashSet<Documento> documentos;
 
-    public boolean addDocumento(String titulo, int tamanho) {
+    public boolean criarDocumento(String titulo, int tamanho) {
         if (titulo.isBlank()) throw new IllegalArgumentException();
         return documentos.add(new Documento(titulo, tamanho));
     }
-    public boolean addDocumento(String titulo) {
+    public boolean criarDocumento(String titulo) {
         if (titulo.isBlank()) throw new IllegalArgumentException();
         return documentos.add(new Documento(titulo));
     }
     public void removeDocumento(String titulo) {
-        if (titulo.isBlank()) throw new IllegalArgumentException();
         Documento doc = buscaPorTitulo(titulo);
         if (doc == null ) throw new NoSuchElementException();
         documentos.remove(doc);
     }
 
     public String[] exibeDocumento(String titulo) {
-        if (titulo.isBlank()) throw new IllegalArgumentException();
         Documento doc = buscaPorTitulo(titulo);
         if (doc == null ) throw new NoSuchElementException();
-        return doc.visualizar();
+        return doc.exibir();
     }
 
-    public boolean cadastraElemento() {
-        return false;
+    public int addTexto(String titulo, String valor, int prioridade) {
+        Documento doc = buscaPorTitulo(titulo);
+        if (doc == null ) throw new NoSuchElementException();
+        return doc.addTexto(valor, prioridade);
+    }
+    public int addTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
+        Documento doc = buscaPorTitulo(tituloDoc);
+        if (doc == null ) throw new NoSuchElementException();
+        return doc.addTitulo(valor, prioridade, nivel, linkavel);
+    }
+    public int addTermos(String tituloDoc,String valor, int prioridade, String separador, String ordem) {
+        Documento doc = buscaPorTitulo(tituloDoc);
+        if (doc == null ) throw new NoSuchElementException();
+        return doc.addTermos(valor, prioridade, separador, ordem);
+    }
+    public int addLista(String tituloDoc,String valor, int prioridade, String separador, String caractere) {
+        Documento doc = buscaPorTitulo(tituloDoc);
+        if (doc == null ) throw new NoSuchElementException();
+        return doc.addLista(valor, prioridade, separador, caractere);
     }
 
     public int getNumeroElementos(String titulo) {
-        if (titulo.isBlank()) throw new IllegalArgumentException();
         Documento doc = buscaPorTitulo(titulo);
         if (doc == null ) throw new NoSuchElementException();
         return doc.getNumElementos();

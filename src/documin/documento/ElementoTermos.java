@@ -3,13 +3,13 @@ package documin.documento;
 import java.util.Arrays;
 
 public class ElementoTermos extends Elemento {
-    ElementoTermos(String valor, int prioridade, String separador, String ordem) {
+    ElementoTermos(String valor, int prioridade, String separador, Ordem ordem) {
         super(prioridade, valor);
         this.propriedades.put("separador", separador);
-        this.propriedades.put("ordem", ordem);
+        this.propriedades.put("ordem", ordem.toString());
         switch (ordem) {
-            case "ALFABÉTICA" -> Arrays.sort(valor.split(propriedades.get("separador")), String.CASE_INSENSITIVE_ORDER);
-            case "TAMANHO" -> sortSize(valor.split(propriedades.get("separador")));
+            case ALFABETICA -> Arrays.sort(valor.split(propriedades.get("separador")), String.CASE_INSENSITIVE_ORDER);
+            case TAMANHO -> sortSize(valor.split(propriedades.get("separador")));
         }
     }
 

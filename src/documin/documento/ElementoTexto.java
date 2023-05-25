@@ -1,7 +1,5 @@
 package documin.documento;
 
-import java.util.HashMap;
-
 public class ElementoTexto extends Elemento {
     ElementoTexto(String valor, int prioridade) {
         super(prioridade, valor);
