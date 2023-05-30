@@ -48,6 +48,13 @@ public class DocumentoController {
         return doc.addLista(valor, prioridade, separador, caractere);
     }
 
+    public int addAtalho(String tituloDoc,String docReferenciado) {
+        Documento doc = buscaPorTitulo(tituloDoc);
+        Documento docRef = buscaPorTitulo(docReferenciado);
+        if (doc == null || docRef == null ) throw new NoSuchElementException();
+        return doc.addAtalho(docRef);
+    }
+
     public int getNumeroElementos(String titulo) {
         Documento doc = buscaPorTitulo(titulo);
         if (doc == null ) throw new NoSuchElementException();
@@ -61,5 +68,15 @@ public class DocumentoController {
         return null;
     }
 
+    public String exibeElementoResumido(String tituloDoc, int elementoPosicaoReal) {
+        Documento doc = buscaPorTitulo(tituloDoc);
+        if (doc == null ) throw new NoSuchElementException();
+        return doc.exibeElementoResumido(elementoPosicaoReal);
+    }
 
+    public String exibeElementoCompleto(String tituloDoc, int elementoPosicaoReal) {
+        Documento doc = buscaPorTitulo(tituloDoc);
+        if (doc == null ) throw new NoSuchElementException();
+        return doc.exibeElementoCompleto(elementoPosicaoReal);
+    }
 }

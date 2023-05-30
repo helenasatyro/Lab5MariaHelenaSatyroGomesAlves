@@ -29,7 +29,7 @@ public class Facade {
     int criarTexto(String tituloDoc, String valor, int prioridade) {
         return documentoController.addTexto(tituloDoc, valor, prioridade);
     }
-    int criarTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel {
+    int criarTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
         return documentoController.addTitulo(tituloDoc, valor, prioridade, nivel, linkavel);
     }
     int criarLista(String tituloDoc, String valorLista, int prioridade, String separador, String charLista) {
@@ -39,10 +39,14 @@ public class Facade {
         return documentoController.addTermos(tituloDoc, valorTermos, prioridade, separador, ordem);
     }
     int criarAtalho(String tituloDoc, String tituloDocReferenciado) {
-        return documentoController.add
+        return documentoController.addAtalho(tituloDoc, tituloDocReferenciado);
     }
-    String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
+    String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicaoReal) {
+        return documentoController.exibeElementoCompleto(tituloDoc, elementoPosicaoReal);
 
+    }
+    String pegarRepresentacaoResumida(String tituloDoc, int elementoPosicaoReal) {
+        return documentoController.exibeElementoResumido(tituloDoc, elementoPosicaoReal);
     }
     String pegarrepresentacaoResumida(String tituloDoc, int elementoPosicao)
     boolean apagarElemento(String tituloDoc, int elementoPosicao)

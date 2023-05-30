@@ -106,11 +106,20 @@ public class Documento {
         }
     }
 
-    public ArrayList<Elemento> getElementos() {
+    ArrayList<Elemento> getElementos() {
         return (ArrayList<Elemento>) elementos.clone();
     }
 
-    public String[] exibir() {
+    String exibeElementoCompleto(int posicaoReal) {
+        Elemento el = elementos.get(posicaoReal);
+        return el.representacaoCompleta();
+    }
+    String exibeElementoResumido(int posicaoReal) {
+        Elemento el = elementos.get(posicaoReal);
+        return el.representacaoCurta();
+    }
+
+    String[] exibir() {
         String[] retorno = new String[elementos.size()];
         for (int i = 0; i < elementos.size(); i++) {
             retorno[i] = elementos.get(i).representacaoCurta();
