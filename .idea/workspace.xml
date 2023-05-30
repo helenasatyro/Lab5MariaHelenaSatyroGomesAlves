@@ -9,6 +9,12 @@
       <change beforePath="$PROJECT_DIR$/src/documin/Facade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/Facade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/documin/documento/Documento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/Documento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/documin/documento/DocumentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/DocumentoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/documento/Elemento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/Elemento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/documento/ElementoAtalho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/ElementoAtalho.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/documento/ElementoLista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/ElementoLista.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/documento/ElementoTermos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/ElementoTermos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/documento/ElementoTexto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/documento/ElementoTitulo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/ElementoTitulo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +32,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Py5Msu9xs7ujPeD7MInTCNukNx" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">

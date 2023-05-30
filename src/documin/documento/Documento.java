@@ -1,44 +1,48 @@
 package documin.documento;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Objects;
 
 public class Documento {
     private String titulo;
     private int tamanho;
-    private ArrayList<Elemento> elementos;
+    private LinkedList<Elemento> elementos;
 
     Documento(String titulo) {
         if (titulo.isBlank()) throw new IllegalArgumentException();
         this.titulo = titulo;
         this.tamanho = -1;
-        this.elementos = new ArrayList<>();
+        this.elementos = new LinkedList<>();
     }
     Documento(String titulo, int tamanho) {
         if (titulo.isBlank()) throw new IllegalArgumentException();
         this.titulo = titulo;
         if (tamanho <= 0) throw new IllegalArgumentException();
         this.tamanho = tamanho;
-        this.elementos = new ArrayList<>();
+        this.elementos = new LinkedList<>();
     }
 
     int addTexto(String valor, int prioridade) {
         if (tamanho == -1 || elementos.size() < tamanho) {
-            elementos.add(new ElementoTexto(valor, prioridade));
+            elementos.add(new Elemento(prioridade, valor));
+            return elementos.size() -1;
         }
-        return elementos.size() -1;
+        return -1;
     }
     int addTitulo(String valor, int prioridade, int nivel, boolean linkavel) {
         if (tamanho == -1 || elementos.size() < tamanho) {
             elementos.add(new ElementoTitulo(valor, prioridade, nivel, linkavel));
+            return elementos.size() -1;
         }
-        return elementos.size() -1;
+        return -1;
     }
     int addLista(String valor, int prioridade, String separador, String caractere) {
         if (tamanho == -1 || elementos.size() < tamanho) {
             elementos.add(new ElementoLista(valor, prioridade, separador, caractere));
+            return elementos.size() -1;
         }
-        return elementos.size() -1;
+        return -1;
     }
     int addTermos(String valor, int prioridade, String separador, String ordem) {
         Ordem o;
@@ -51,8 +55,9 @@ public class Documento {
                 o = Ordem.NENHUM;
             }
             elementos.add(new ElementoTermos(valor, prioridade, separador, o));
+            return elementos.size() -1;
         }
-        return elementos.size() -1;
+        return -1;
     }
 
     int addAtalho(Documento doc) {
@@ -62,8 +67,9 @@ public class Documento {
 
         if (tamanho == -1 || elementos.size() < tamanho) {
             elementos.add(new ElementoAtalho(doc));
+            return elementos.size() -1;
         }
-        return elementos.size() -1;
+        return -1;
     }
     @Override
     public boolean equals(Object o) {
@@ -98,16 +104,12 @@ public class Documento {
         elementos.set(elementoPosicaoReal, elementos.get(elementoPosicaoReal +1));
         elementos.set(elementoPosicaoReal +1, temp);
     }
-    void removeElemento(int elementoPosicaoReal) {
-        ArrayList<Elemento> novo = new ArrayList<>();
-        for (int i = 0; i < elementos.size(); i++) {
-            if (i == elementoPosicaoReal) { continue;}
-            novo.add(elementos.get(i));
-        }
+    boolean removeElemento(int elementoPosicaoReal) {
+        return this.elementos.remove(elementoPosicaoReal) != null;
     }
 
-    ArrayList<Elemento> getElementos() {
-        return (ArrayList<Elemento>) elementos.clone();
+    LinkedList<Elemento> getElementos() {
+        return (LinkedList<Elemento>) elementos.clone();
     }
 
     String exibeElementoCompleto(int posicaoReal) {

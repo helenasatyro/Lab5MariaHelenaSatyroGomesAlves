@@ -3,8 +3,10 @@ package documin.documento;
 import java.util.HashMap;
 
 public class ElementoTitulo extends Elemento {
+    private HashMap<String, String> propriedades;
     ElementoTitulo(String valor, int prioridade, int nivel, boolean linkavel) {
         super(prioridade, valor);
+        this.propriedades = new HashMap<String,String>();
         this.propriedades.put("nivel", String.valueOf(nivel));
         this.propriedades.put("linkavel", String.valueOf(linkavel));
     }

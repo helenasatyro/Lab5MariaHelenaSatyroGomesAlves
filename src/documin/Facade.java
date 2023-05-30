@@ -5,7 +5,7 @@ import documin.documento.DocumentoController;
 
 public class Facade {
 
-    private DocumentoController documentoController;
+    private final DocumentoController documentoController;
 
     public Facade() {
         this.documentoController = new DocumentoController();
@@ -33,7 +33,7 @@ public class Facade {
         return documentoController.addTitulo(tituloDoc, valor, prioridade, nivel, linkavel);
     }
     int criarLista(String tituloDoc, String valorLista, int prioridade, String separador, String charLista) {
-        return documentoController.addLista(tituloDoc, valorLista, prioridade, separador, charLista)
+        return documentoController.addLista(tituloDoc, valorLista, prioridade, separador, charLista);
     }
     int criarTermos(String tituloDoc, String valorTermos, int prioridade, String separador, String ordem) {
         return documentoController.addTermos(tituloDoc, valorTermos, prioridade, separador, ordem);
@@ -41,17 +41,22 @@ public class Facade {
     int criarAtalho(String tituloDoc, String tituloDocReferenciado) {
         return documentoController.addAtalho(tituloDoc, tituloDocReferenciado);
     }
-    String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicaoReal) {
-        return documentoController.exibeElementoCompleto(tituloDoc, elementoPosicaoReal);
+    String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
+        return documentoController.exibeElementoCompleto(tituloDoc, elementoPosicao);
 
     }
-    String pegarRepresentacaoResumida(String tituloDoc, int elementoPosicaoReal) {
-        return documentoController.exibeElementoResumido(tituloDoc, elementoPosicaoReal);
+    String pegarRepresentacaoResumida(String tituloDoc, int elementoPosicao) {
+        return documentoController.exibeElementoResumido(tituloDoc, elementoPosicao);
     }
-    String pegarrepresentacaoResumida(String tituloDoc, int elementoPosicao)
-    boolean apagarElemento(String tituloDoc, int elementoPosicao)
-    void moverParaCima(String tituloDoc, int elementoPosicao)
-    void moverParaBaixo(String tituloDoc, int elementoPosicao)
+    boolean apagarElemento(String tituloDoc, int elementoPosicao) {
+        return documentoController.removeElemento(tituloDoc, elementoPosicao);
+    }
+    void moverParaCima(String tituloDoc, int elementoPosicao) {
+        documentoController.moverAcima(tituloDoc, elementoPosicao);
+    }
+    void moverParaBaixo(String tituloDoc, int elementoPosicao) {
+        documentoController.moverAbaixo(tituloDoc, elementoPosicao);
+    }
 
 
 

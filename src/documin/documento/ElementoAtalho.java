@@ -2,28 +2,9 @@ package documin.documento;
 
 public class ElementoAtalho extends Elemento {
     private Documento doc;
-    private String reprCompleta;
-    private String reprCurta;
     public ElementoAtalho(Documento doc) {
         super(calculaPrioridade(doc), doc.getTitulo());
-        this.reprCurta = formataRepresentacaoCurta(doc);
-        this.reprCompleta = formataRepresentacaoCompleta(doc);
-    }
-
-    private static String formataRepresentacaoCurta(Documento doc) {
-        String retorno = "";
-        for (Elemento el: doc.getElementos()) {
-            if (el.getPrioridade() >= 4) { retorno += el.representacaoCurta() + "\n"; }
-        }
-        return retorno;
-    }
-
-    private static String formataRepresentacaoCompleta(Documento doc) {
-        String retorno = "";
-        for (Elemento el: doc.getElementos()) {
-            if (el.getPrioridade() >= 4) { retorno += el.representacaoCompleta() + "\n"; }
-        }
-        return retorno;
+        this.doc = doc;
     }
 
     private static int calculaPrioridade(Documento doc) {
@@ -37,12 +18,20 @@ public class ElementoAtalho extends Elemento {
 
     @Override
     String representacaoCompleta() {
-        return reprCompleta;
+        String retorno = "";
+        for (Elemento el: doc.getElementos()) {
+            if (el.getPrioridade() >= 4) { retorno += el.representacaoCompleta() + "\n"; }
+        }
+        return retorno;
     }
 
     @Override
     String representacaoCurta() {
-        return reprCurta;
+        String retorno = "";
+        for (Elemento el: doc.getElementos()) {
+            if (el.getPrioridade() >= 4) { retorno += el.representacaoCurta() + "\n"; }
+        }
+        return retorno;
     }
     @Override
     protected Object clone() throws CloneNotSupportedException {

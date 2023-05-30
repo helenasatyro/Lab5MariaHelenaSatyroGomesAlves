@@ -1,15 +1,21 @@
 package documin.documento;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
 
 public class ElementoTermos extends Elemento {
+    private HashMap<String, String> propriedades;
+
     ElementoTermos(String valor, int prioridade, String separador, Ordem ordem) {
         super(prioridade, valor);
+        this.propriedades = new HashMap<String, String>();
         this.propriedades.put("separador", separador);
         this.propriedades.put("ordem", ordem.toString());
         switch (ordem) {
             case ALFABETICA -> Arrays.sort(valor.split(propriedades.get("separador")), String.CASE_INSENSITIVE_ORDER);
-            case TAMANHO -> sortSize(valor.split(propriedades.get("separador")));
+            case TAMANHO -> Arrays.sort(valor.split(propriedades.get("separador")), Comparator.comparingInt(String::length).reversed());
+
         }
     }
 
@@ -33,15 +39,4 @@ public class ElementoTermos extends Elemento {
         return retorno;
     }
 
-    private void sortSize(String[] palavras) {
-        for (int i = 0; i < palavras.length; i++) {
-            for (int j = i; j < palavras.length -1; j++) {
-                if (palavras[j].length() < palavras[j+1].length()) {
-                    String temp = palavras[j];
-                    palavras[j] = palavras[j+1];
-                    palavras[j+1] = temp;
-                }
-            }
-        }
-    }
 }

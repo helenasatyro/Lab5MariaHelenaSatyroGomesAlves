@@ -3,8 +3,10 @@ package documin.documento;
 import java.util.HashMap;
 
 public class ElementoLista extends Elemento {
+    private HashMap<String, String> propriedades;
     ElementoLista(String valor, int prioridade, String separador, String caractere) {
         super(prioridade, valor);
+        this.propriedades = new HashMap<String,String>();
         this.propriedades.put("separador", separador);
         this.propriedades.put("caractere", caractere);
     }
