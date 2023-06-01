@@ -1,13 +1,16 @@
 package documin;
 
 import documin.documento.DocumentoController;
+import documin.visao.VisaoController;
 
 
 public class Facade {
 
     private final DocumentoController documentoController;
+    private final VisaoController visaoController;
 
     public Facade() {
+        this.visaoController = new VisaoController();
         this.documentoController = new DocumentoController();
     }
 
@@ -24,7 +27,7 @@ public class Facade {
         return documentoController.getNumeroElementos(titulo);
     }
     String[] exibirDocumento(String titulo) {
-        return documentoController.exibeDocumento(titulo); aaaaa;
+        return documentoController.exibeDocumento(titulo);
     }
     int criarTexto(String tituloDoc, String valor, int prioridade) {
         return documentoController.addTexto(tituloDoc, valor, prioridade);
@@ -57,8 +60,21 @@ public class Facade {
     void moverParaBaixo(String tituloDoc, int elementoPosicao) {
         documentoController.moverAbaixo(tituloDoc, elementoPosicao);
     }
-
-
+    String[] exibirVisao(int visaoId) {
+        return visaoController.exibirVisao(visaoId);
+    }
+    int criarVisaoCompleta(String tituloDoc) {
+        return visaoController.criarVisaoCompleta(tituloDoc, documentoController);
+    }
+    int criarVisaoResumida(String tituloDoc) {
+        return visaoController.criarVisaoResumida(tituloDoc, documentoController);
+    }
+    int criarVisaoPrioritaria(String tituloDoc, int prioridade) {
+        return visaoController.criarVisaoPrioritaria(tituloDoc, prioridade, documentoController);
+    }
+    int criarVisaoTitulo(String tituloDoc) {
+        return visaoController.criarVisaoTitulo(tituloDoc, documentoController);
+    }
 
 
 

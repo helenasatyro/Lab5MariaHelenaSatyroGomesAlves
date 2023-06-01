@@ -108,7 +108,7 @@ public class Documento {
         return this.elementos.remove(elementoPosicaoReal) != null;
     }
 
-    LinkedList<Elemento> getElementos() {
+    public LinkedList<Elemento> getElementos() {
         return (LinkedList<Elemento>) elementos.clone();
     }
 
@@ -121,7 +121,7 @@ public class Documento {
         return el.representacaoCurta();
     }
 
-    String[] exibir() {
+    public String[] exibir() {
         String[] retorno = new String[elementos.size()];
         for (int i = 0; i < elementos.size(); i++) {
             retorno[i] = elementos.get(i).representacaoCurta();

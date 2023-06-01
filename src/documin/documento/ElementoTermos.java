@@ -30,7 +30,7 @@ public class ElementoTermos extends Elemento {
     }
 
     @Override
-    String representacaoCurta() {
+     String representacaoCurta() {
         String[] conteudo = valor.split(propriedades.get("separador"));
         String retorno = conteudo[0];
         for (int i = 1; i < conteudo.length; i++) {

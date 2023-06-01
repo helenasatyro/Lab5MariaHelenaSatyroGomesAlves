@@ -5,16 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2cb4c91b-763b-4cbd-8f69-48310c43eba4" name="Changes" comment="second commit">
+      <change afterPath="$PROJECT_DIR$/src/documin/visao/VisaoCompleta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/documin/visao/VisaoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/documin/visao/VisaoPrioritaria.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/documin/visao/VisaoResumida.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/documin/visao/VisaoTitulo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/documin/visao/Visivel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/documin/Facade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/Facade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/documin/documento/Documento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/Documento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/documin/documento/DocumentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/DocumentoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documin/documento/Elemento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/Elemento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documin/documento/ElementoAtalho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/ElementoAtalho.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documin/documento/ElementoLista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/ElementoLista.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/documin/documento/ElementoTermos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/ElementoTermos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documin/documento/ElementoTexto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documin/documento/ElementoTitulo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/ElementoTitulo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/documento/Visualizacao.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,5 +1,6 @@
 package documin.documento;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 
@@ -52,7 +53,7 @@ public class DocumentoController {
         Documento doc = buscaPorTitulo(titulo);
         return doc.getNumElementos();
     }
-    private Documento buscaPorTitulo(String titulo) {
+    public Documento buscaPorTitulo(String titulo) {
         if (titulo.isBlank()) throw new IllegalArgumentException();
         for (Documento d: documentos) {
             if (d.getTitulo().equals(titulo)) return d;
