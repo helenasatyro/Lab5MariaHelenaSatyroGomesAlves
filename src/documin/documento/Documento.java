@@ -108,7 +108,7 @@ public class Documento {
         return this.elementos.remove(elementoPosicaoReal) != null;
     }
 
-    public LinkedList<Elemento> getElementos() {
+    LinkedList<Elemento> getElementos() {
         return (LinkedList<Elemento>) elementos.clone();
     }
 

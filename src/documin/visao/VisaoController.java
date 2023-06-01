@@ -9,8 +9,7 @@ public class VisaoController {
     private ArrayList<Visivel> visoes;
 
     public int criarVisaoCompleta(String tituloDoc, DocumentoController dc) {
-        Documento doc = dc.buscaPorTitulo(tituloDoc);
-        visoes.add(new VisaoCompleta(doc));
+        visoes.add(new VisaoCompleta(tituloDoc, dc));
         return visoes.size() -1;
     }
     public int criarVisaoResumida(String tituloDoc, DocumentoController dc) {
@@ -24,8 +23,7 @@ public class VisaoController {
         return visoes.size() -1;
     }
     public int criarVisaoTitulo(String tituloDoc, DocumentoController dc) {
-        Documento doc = dc.buscaPorTitulo(tituloDoc);
-        visoes.add(new VisaoTitulo(doc));
+        visoes.add(new VisaoTitulo(tituloDoc, dc));
         return visoes.size() -1;
     }
     public String[] exibirVisao(int visaoId) {

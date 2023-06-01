@@ -74,8 +74,8 @@ public class Facade {
     }
     int criarVisaoTitulo(String tituloDoc) {
         return visaoController.criarVisaoTitulo(tituloDoc, documentoController);
-    }
 
+    }
 
 
 }
