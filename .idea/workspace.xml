@@ -4,15 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cb4c91b-763b-4cbd-8f69-48310c43eba4" name="Changes" comment="second commit">
-      <change afterPath="$PROJECT_DIR$/src/tests/FacadeTest.java" afterDir="false" />
+    <list default="true" id="2cb4c91b-763b-4cbd-8f69-48310c43eba4" name="Changes" comment="problemas com versao">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/documin/FacadeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/DocumentoControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab5MariaHelenaSatyroGomesAlves.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Lab5MariaHelenaSatyroGomesAlves.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/documin/Facade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/Facade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/documin/documento/Documento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/Documento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documin/visao/VisaoCompleta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/visao/VisaoCompleta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documin/visao/VisaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/visao/VisaoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documin/visao/Visivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/visao/Visivel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/documento/DocumentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/DocumentoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/visao/VisaoCompleta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/VisaoCompleta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/visao/VisaoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/visao/VisaoPrioritaria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/VisaoPrioritaria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/visao/VisaoResumida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/VisaoResumida.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/visao/VisaoTitulo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/VisaoTitulo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/visao/Visivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/Visivel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/FacadeTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,8 +74,8 @@
     "jdk.selected.JAVA_MODULE": "17",
     "last_directory_selection": "/home/helena/IdeaProjects/Lab5MariaHelenaSatyroGomesAlves/src/tests",
     "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
 }]]></component>
@@ -78,28 +87,100 @@
       <recent name="tests" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="FacadeTest.testaCriarDocIlimitado" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.DocumentoControllerTest.testaExibirDocumentoInexistente">
+    <configuration name="DocumentoControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Lab5MariaHelenaSatyroGomesAlves" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="tests.*" />
+          <option name="PATTERN" value="documin.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.FacadeTest" />
-      <option name="METHOD_NAME" value="testaCriarDocIlimitado" />
+      <option name="MAIN_CLASS_NAME" value="tests.DocumentoControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DocumentoControllerTest.testaExibirDocumento" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Lab5MariaHelenaSatyroGomesAlves" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="documin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.DocumentoControllerTest" />
+      <option name="METHOD_NAME" value="testaExibirDocumento" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DocumentoControllerTest.testaExibirDocumentoInexistente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Lab5MariaHelenaSatyroGomesAlves" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="documin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.DocumentoControllerTest" />
+      <option name="METHOD_NAME" value="testaExibirDocumentoInexistente" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DocumentoControllerTest.testaRemoverDocInexistente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Lab5MariaHelenaSatyroGomesAlves" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="documin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.DocumentoControllerTest" />
+      <option name="METHOD_NAME" value="testaRemoverDocInexistente" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DocumentoControllerTest.testaVerQuantidadeElementos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Lab5MariaHelenaSatyroGomesAlves" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="documin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.DocumentoControllerTest" />
+      <option name="METHOD_NAME" value="testaVerQuantidadeElementos" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.DocumentoControllerTest" />
+      <item itemvalue="JUnit.DocumentoControllerTest.testaExibirDocumento" />
+      <item itemvalue="JUnit.DocumentoControllerTest.testaExibirDocumentoInexistente" />
+      <item itemvalue="JUnit.DocumentoControllerTest.testaRemoverDocInexistente" />
+      <item itemvalue="JUnit.DocumentoControllerTest.testaVerQuantidadeElementos" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.FacadeTest.testaCriarDocIlimitado" />
+        <item itemvalue="JUnit.DocumentoControllerTest.testaExibirDocumentoInexistente" />
+        <item itemvalue="JUnit.DocumentoControllerTest.testaExibirDocumento" />
+        <item itemvalue="JUnit.DocumentoControllerTest" />
+        <item itemvalue="JUnit.DocumentoControllerTest.testaRemoverDocInexistente" />
+        <item itemvalue="JUnit.DocumentoControllerTest.testaVerQuantidadeElementos" />
       </list>
     </recent_temporary>
   </component>
@@ -126,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684717677119</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="problemas com versao">
+      <created>1685652169418</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1685652169419</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -142,6 +230,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="second commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="second commit" />
+    <MESSAGE value="problemas com versao" />
+    <option name="LAST_COMMIT_MESSAGE" value="problemas com versao" />
   </component>
 </project>

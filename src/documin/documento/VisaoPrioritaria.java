@@ -1,7 +1,4 @@
-package documin.visao;
-
-import documin.documento.Documento;
-import documin.documento.Elemento;
+package documin.documento;
 
 import java.util.LinkedList;
 
@@ -17,7 +14,7 @@ public class VisaoPrioritaria implements Visivel {
     public String[] exibirVisao() {
         LinkedList<Elemento> elementos = doc.getElementos();
         String[] retorno = new String[elementos.size()];
-        for (int i = 0; i < elementos.size(); i++) {
+        for (int i = 0; i < retorno.length; i++) {
             if (elementos.get(i).getPrioridade() >= prioridade) {
                 retorno[i] = elementos.get(i).representacaoCurta();
             }

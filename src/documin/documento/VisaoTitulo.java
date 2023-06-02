@@ -1,8 +1,4 @@
-package documin.visao;
-
-import documin.documento.Documento;
-import documin.documento.Elemento;
-import documin.documento.ElementoTitulo;
+package documin.documento;
 
 import java.util.LinkedList;
 

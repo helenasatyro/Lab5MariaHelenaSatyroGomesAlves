@@ -10,13 +10,13 @@ public class Documento {
     private LinkedList<Elemento> elementos;
 
     Documento(String titulo) {
-        if (titulo.isBlank()) throw new IllegalArgumentException();
+        if (titulo.isEmpty()) throw new IllegalArgumentException();
         this.titulo = titulo;
         this.tamanho = -1;
         this.elementos = new LinkedList<>();
     }
     Documento(String titulo, int tamanho) {
-        if (titulo.isBlank()) throw new IllegalArgumentException();
+        if (titulo.isEmpty()) throw new IllegalArgumentException();
         this.titulo = titulo;
         if (tamanho <= 0) throw new IllegalArgumentException();
         this.tamanho = tamanho;
@@ -28,21 +28,21 @@ public class Documento {
             elementos.add(new Elemento(prioridade, valor));
             return elementos.size() -1;
         }
-        return -1;
+        throw new IllegalStateException("Documento atingiu o limite de elementos.");
     }
     int addTitulo(String valor, int prioridade, int nivel, boolean linkavel) {
         if (tamanho == -1 || elementos.size() < tamanho) {
             elementos.add(new ElementoTitulo(valor, prioridade, nivel, linkavel));
             return elementos.size() -1;
         }
-        return -1;
+        throw new IllegalStateException("Documento atingiu o limite de elementos.");
     }
     int addLista(String valor, int prioridade, String separador, String caractere) {
         if (tamanho == -1 || elementos.size() < tamanho) {
             elementos.add(new ElementoLista(valor, prioridade, separador, caractere));
             return elementos.size() -1;
         }
-        return -1;
+        throw new IllegalStateException("Documento atingiu o limite de elementos.");
     }
     int addTermos(String valor, int prioridade, String separador, String ordem) {
         Ordem o;
@@ -57,7 +57,7 @@ public class Documento {
             elementos.add(new ElementoTermos(valor, prioridade, separador, o));
             return elementos.size() -1;
         }
-        return -1;
+        throw new IllegalStateException("Documento atingiu o limite de elementos.");
     }
 
     int addAtalho(Documento doc) {
@@ -69,7 +69,7 @@ public class Documento {
             elementos.add(new ElementoAtalho(doc));
             return elementos.size() -1;
         }
-        return -1;
+        throw new IllegalStateException("Documento atingiu o limite de elementos.");
     }
     @Override
     public boolean equals(Object o) {

@@ -1,6 +1,5 @@
 package documin.documento;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 
@@ -8,12 +7,16 @@ public class DocumentoController {
 
     private HashSet<Documento> documentos;
 
+    public DocumentoController() {
+        this.documentos = new HashSet<>();
+    }
+
     public boolean criarDocumento(String titulo, int tamanho) {
-        if (titulo.isBlank()) throw new IllegalArgumentException();
+        if (titulo.isEmpty() || titulo.isBlank()) throw new IllegalArgumentException();
         return documentos.add(new Documento(titulo, tamanho));
     }
     public boolean criarDocumento(String titulo) {
-        if (titulo.isBlank()) throw new IllegalArgumentException();
+        if (titulo.isEmpty() || titulo.isBlank()) throw new IllegalArgumentException();
         return documentos.add(new Documento(titulo));
     }
     public void removeDocumento(String titulo) {
@@ -21,29 +24,29 @@ public class DocumentoController {
         documentos.remove(doc);
     }
 
-    public String[] exibeDocumento(String titulo) {
+    public String[] exibirDocumento(String titulo) {
         Documento doc = buscaPorTitulo(titulo);
         return doc.exibir();
     }
 
-    public int addTexto(String titulo, String valor, int prioridade) {
-        Documento doc = buscaPorTitulo(titulo);
+    public int criarTexto(String tituloDoc, String valor, int prioridade) {
+        Documento doc = buscaPorTitulo(tituloDoc);
         return doc.addTexto(valor, prioridade);
     }
-    public int addTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
+    public int criarTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
         Documento doc = buscaPorTitulo(tituloDoc);
         return doc.addTitulo(valor, prioridade, nivel, linkavel);
     }
-    public int addTermos(String tituloDoc,String valor, int prioridade, String separador, String ordem) {
+    public int criarTermos(String tituloDoc, String valor, int prioridade, String separador, String ordem) {
         Documento doc = buscaPorTitulo(tituloDoc);
         return doc.addTermos(valor, prioridade, separador, ordem);
     }
-    public int addLista(String tituloDoc,String valor, int prioridade, String separador, String caractere) {
+    public int criarLista(String tituloDoc, String valor, int prioridade, String separador, String caractere) {
         Documento doc = buscaPorTitulo(tituloDoc);
         return doc.addLista(valor, prioridade, separador, caractere);
     }
 
-    public int addAtalho(String tituloDoc,String docReferenciado) {
+    public int criarAtalho(String tituloDoc, String docReferenciado) {
         Documento doc = buscaPorTitulo(tituloDoc);
         Documento docRef = buscaPorTitulo(docReferenciado);
         return doc.addAtalho(docRef);
@@ -53,8 +56,8 @@ public class DocumentoController {
         Documento doc = buscaPorTitulo(titulo);
         return doc.getNumElementos();
     }
-    public Documento buscaPorTitulo(String titulo) {
-        if (titulo.isBlank()) throw new IllegalArgumentException();
+    private Documento buscaPorTitulo(String titulo) {
+        if (titulo.isEmpty() || titulo.isBlank()) throw new IllegalArgumentException();
         for (Documento d: documentos) {
             if (d.getTitulo().equals(titulo)) return d;
         }
