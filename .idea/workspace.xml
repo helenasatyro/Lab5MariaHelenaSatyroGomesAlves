@@ -4,24 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cb4c91b-763b-4cbd-8f69-48310c43eba4" name="Changes" comment="problemas com versao">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/documin/FacadeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/DocumentoControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="2cb4c91b-763b-4cbd-8f69-48310c43eba4" name="Changes" comment="ajustando">
+      <change afterPath="$PROJECT_DIR$/src/documin/documento/ElementoTermosTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/documin/tests/DocumentoControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/documin/Facade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/Facade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/FacadeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/FacadeTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/documin/documento/Documento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/Documento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/documin/documento/DocumentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/DocumentoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documin/visao/VisaoCompleta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/VisaoCompleta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documin/visao/VisaoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documin/visao/VisaoPrioritaria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/VisaoPrioritaria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documin/visao/VisaoResumida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/VisaoResumida.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documin/visao/VisaoTitulo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/VisaoTitulo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documin/visao/Visivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/Visivel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/FacadeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/documento/Elemento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/Elemento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/documento/ElementoAtalho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/ElementoAtalho.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/documento/ElementoLista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/ElementoLista.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/documento/ElementoTermos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/ElementoTermos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documin/documento/ElementoTitulo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/documin/documento/ElementoTitulo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/DocumentoControllerTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,12 +27,15 @@
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
   </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="0" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -76,7 +75,7 @@
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.General"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -87,12 +86,27 @@
       <recent name="tests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DocumentoControllerTest.testaExibirDocumentoInexistente">
+  <component name="RunManager" selected="JUnit.DocumentoControllerTest (1)">
+    <configuration name="DocumentoControllerTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Lab5MariaHelenaSatyroGomesAlves" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="documin.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="documin.tests" />
+      <option name="MAIN_CLASS_NAME" value="documin.tests.DocumentoControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DocumentoControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Lab5MariaHelenaSatyroGomesAlves" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="documin.*" />
+          <option name="PATTERN" value="tests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -103,23 +117,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DocumentoControllerTest.testaExibirDocumento" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DocumentoControllerTest.testaExibirAtalhoCompleto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Lab5MariaHelenaSatyroGomesAlves" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="documin.*" />
+          <option name="PATTERN" value="tests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.DocumentoControllerTest" />
-      <option name="METHOD_NAME" value="testaExibirDocumento" />
+      <option name="METHOD_NAME" value="testaExibirAtalhoCompleto" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DocumentoControllerTest.testaExibirDocumentoInexistente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FacadeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Lab5MariaHelenaSatyroGomesAlves" />
       <extension name="coverage">
         <pattern>
@@ -127,60 +141,41 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.DocumentoControllerTest" />
-      <option name="METHOD_NAME" value="testaExibirDocumentoInexistente" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="documin" />
+      <option name="MAIN_CLASS_NAME" value="documin.FacadeTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DocumentoControllerTest.testaRemoverDocInexistente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="documin.tests in Lab5MariaHelenaSatyroGomesAlves" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Lab5MariaHelenaSatyroGomesAlves" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="documin.*" />
+          <option name="PATTERN" value="documin.tests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.DocumentoControllerTest" />
-      <option name="METHOD_NAME" value="testaRemoverDocInexistente" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DocumentoControllerTest.testaVerQuantidadeElementos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Lab5MariaHelenaSatyroGomesAlves" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="documin.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.DocumentoControllerTest" />
-      <option name="METHOD_NAME" value="testaVerQuantidadeElementos" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="documin.tests" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.DocumentoControllerTest (1)" />
+      <item itemvalue="JUnit.DocumentoControllerTest.testaExibirAtalhoCompleto" />
+      <item itemvalue="JUnit.FacadeTest" />
+      <item itemvalue="JUnit.documin.tests in Lab5MariaHelenaSatyroGomesAlves" />
       <item itemvalue="JUnit.DocumentoControllerTest" />
-      <item itemvalue="JUnit.DocumentoControllerTest.testaExibirDocumento" />
-      <item itemvalue="JUnit.DocumentoControllerTest.testaExibirDocumentoInexistente" />
-      <item itemvalue="JUnit.DocumentoControllerTest.testaRemoverDocInexistente" />
-      <item itemvalue="JUnit.DocumentoControllerTest.testaVerQuantidadeElementos" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DocumentoControllerTest.testaExibirDocumentoInexistente" />
-        <item itemvalue="JUnit.DocumentoControllerTest.testaExibirDocumento" />
+        <item itemvalue="JUnit.DocumentoControllerTest (1)" />
+        <item itemvalue="JUnit.FacadeTest" />
+        <item itemvalue="JUnit.documin.tests in Lab5MariaHelenaSatyroGomesAlves" />
         <item itemvalue="JUnit.DocumentoControllerTest" />
-        <item itemvalue="JUnit.DocumentoControllerTest.testaRemoverDocInexistente" />
-        <item itemvalue="JUnit.DocumentoControllerTest.testaVerQuantidadeElementos" />
+        <item itemvalue="JUnit.DocumentoControllerTest.testaExibirAtalhoCompleto" />
       </list>
     </recent_temporary>
   </component>
@@ -214,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685652169419</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="ajustando">
+      <created>1685668114129</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1685668114129</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -231,6 +233,21 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="second commit" />
     <MESSAGE value="problemas com versao" />
-    <option name="LAST_COMMIT_MESSAGE" value="problemas com versao" />
+    <MESSAGE value="ajustando" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajustando" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Lab5MariaHelenaSatyroGomesAlves$DocumentoControllerTest_testaCriaTermosSemRestricao.ic" NAME="DocumentoControllerTest.testaCriaTermosSemRestricao Coverage Results" MODIFIED="1686000294118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>documin.documento.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Lab5MariaHelenaSatyroGomesAlves$DocumentoControllerTest.ic" NAME="DocumentoControllerTest Coverage Results" MODIFIED="1686012090501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>tests.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Lab5MariaHelenaSatyroGomesAlves$FacadeTest.ic" NAME="FacadeTest Coverage Results" MODIFIED="1686012357885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>documin.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Lab5MariaHelenaSatyroGomesAlves$DocumentoControllerTest__1_.ic" NAME="DocumentoControllerTest (1) Coverage Results" MODIFIED="1686012830346" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>documin.tests.*</FILTER>
+    </SUITE>
   </component>
 </project>

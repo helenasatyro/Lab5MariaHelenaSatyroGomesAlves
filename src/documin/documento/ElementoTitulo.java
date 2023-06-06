@@ -13,13 +13,13 @@ public class ElementoTitulo extends Elemento {
 
     @Override
     String representacaoCompleta() {
-        if (propriedades.get("linkavel").equals("true")) { return getPrioridade() + ". " + getValor() + " -- " + propriedades.get("nivel") + "-" + propriedades.get("nivel").toUpperCase().replaceAll(" ", ""); }
-        return propriedades.get("valor") + ". " + getValor();
+        if (propriedades.get("linkavel").equals("true")) { return getPrioridade() + ". " + this.valor + " -- " + propriedades.get("nivel") + "-" + valor.toUpperCase().replaceAll(" ", "") + "\n"; }
+        return propriedades.get("nivel") + ". " + this.valor + "\n";
     }
 
     @Override
     String representacaoCurta() {
-        return propriedades.get("valor") + ". " + getValor();
+        return propriedades.get("nivel") + ". " + valor + "\n";
     }
 
 }

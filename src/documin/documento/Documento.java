@@ -8,12 +8,14 @@ public class Documento {
     private String titulo;
     private int tamanho;
     private LinkedList<Elemento> elementos;
+    private boolean ehAtalho;
 
     Documento(String titulo) {
         if (titulo.isEmpty()) throw new IllegalArgumentException();
         this.titulo = titulo;
         this.tamanho = -1;
         this.elementos = new LinkedList<>();
+        this.ehAtalho = false;
     }
     Documento(String titulo, int tamanho) {
         if (titulo.isEmpty()) throw new IllegalArgumentException();
@@ -61,7 +63,7 @@ public class Documento {
     }
 
     int addAtalho(Documento doc) {
-        for (Elemento el: elementos) {
+        for (Elemento el: doc.getElementos()) {
             if (el.getClass() == ElementoAtalho.class) throw new IllegalStateException();
         }
 
@@ -70,6 +72,9 @@ public class Documento {
             return elementos.size() -1;
         }
         throw new IllegalStateException("Documento atingiu o limite de elementos.");
+    }
+    void setEhAtalho(boolean at) {
+        this.ehAtalho = at;
     }
     @Override
     public boolean equals(Object o) {
@@ -127,5 +132,9 @@ public class Documento {
             retorno[i] = elementos.get(i).representacaoCurta();
         }
         return retorno;
+    }
+
+    public boolean getEhAtalho() {
+        return this.ehAtalho;
     }
 }

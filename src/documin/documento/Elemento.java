@@ -11,13 +11,10 @@ public class Elemento implements Cloneable {
         this.valor = valor;
     }
     int getPrioridade() { return this.prioridade; }
-    String getValor() { return this.valor; }
-
     String representacaoCompleta() {
-        return getValor();
+        return valor + "\n";
     }
-
     String representacaoCurta() {
-        return getValor();
+        return valor + "\n";
     }
 }

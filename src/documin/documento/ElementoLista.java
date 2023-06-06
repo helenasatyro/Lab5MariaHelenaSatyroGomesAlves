@@ -7,6 +7,8 @@ public class ElementoLista extends Elemento {
     ElementoLista(String valor, int prioridade, String separador, String caractere) {
         super(prioridade, valor);
         this.propriedades = new HashMap<String,String>();
+        // o pipe | em regex significa OR, então para usá-lo como separador é necessário escapá-lo
+        if (separador.equals("|")) separador = "\\|";
         this.propriedades.put("separador", separador);
         this.propriedades.put("caractere", caractere);
     }
@@ -28,6 +30,6 @@ public class ElementoLista extends Elemento {
         for (int i = 1; i < conteudo.length; i++) {
             retorno += ", " + conteudo[i];
         }
-        return retorno;
+        return retorno + "\n";
     }
 }

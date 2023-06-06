@@ -24,7 +24,7 @@ public class DocumentoController {
         documentos.remove(doc);
     }
 
-    public String[] exibirDocumento(String titulo) {
+    public String[] exibeDocumento(String titulo) {
         Documento doc = buscaPorTitulo(titulo);
         return doc.exibir();
     }
@@ -48,6 +48,7 @@ public class DocumentoController {
 
     public int criarAtalho(String tituloDoc, String docReferenciado) {
         Documento doc = buscaPorTitulo(tituloDoc);
+        if (doc.getEhAtalho()) throw new IllegalStateException("Documento é referenciado como atalho em outro documento e não pode receber atalhos.");
         Documento docRef = buscaPorTitulo(docReferenciado);
         return doc.addAtalho(docRef);
     }
@@ -56,7 +57,7 @@ public class DocumentoController {
         Documento doc = buscaPorTitulo(titulo);
         return doc.getNumElementos();
     }
-    private Documento buscaPorTitulo(String titulo) {
+    public Documento buscaPorTitulo(String titulo) {
         if (titulo.isEmpty() || titulo.isBlank()) throw new IllegalArgumentException();
         for (Documento d: documentos) {
             if (d.getTitulo().equals(titulo)) return d;
@@ -64,26 +65,26 @@ public class DocumentoController {
         throw new NoSuchElementException();
     }
 
-    public String exibeElementoResumido(String tituloDoc, int elementoPosicaoReal) {
+    public String pegarRepresentacaoResumida(String tituloDoc, int elementoPosicaoReal) {
         Documento doc = buscaPorTitulo(tituloDoc);
         return doc.exibeElementoResumido(elementoPosicaoReal);
     }
 
-    public String exibeElementoCompleto(String tituloDoc, int elementoPosicaoReal) {
+    public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicaoReal) {
         Documento doc = buscaPorTitulo(tituloDoc);
         return doc.exibeElementoCompleto(elementoPosicaoReal);
     }
 
-    public boolean removeElemento(String tituloDoc, int elementoPosicao) {
+    public boolean apagarElemento(String tituloDoc, int elementoPosicao) {
         Documento doc = buscaPorTitulo(tituloDoc);
         return doc.removeElemento(elementoPosicao);
     }
 
-    public void moverAcima(String tituloDoc, int elementoPosicaoReal) {
+    public void moverParaCima(String tituloDoc, int elementoPosicaoReal) {
         Documento doc = buscaPorTitulo(tituloDoc);
         doc.moveAcima(elementoPosicaoReal);
     }
-    public void moverAbaixo(String tituloDoc, int elementoPosicaoReal) {
+    public void moverParaBaixo(String tituloDoc, int elementoPosicaoReal) {
         Documento doc = buscaPorTitulo(tituloDoc);
         doc.moveAbaixo(elementoPosicaoReal);
     }

@@ -6,10 +6,8 @@ import documin.documento.DocumentoController;
 public class Facade {
 
     private final DocumentoController documentoController;
-    //private final VisaoController visaoController;
 
     public Facade() {
-        //this.visaoController = new VisaoController();
         this.documentoController = new DocumentoController();
     }
 
@@ -26,7 +24,7 @@ public class Facade {
         return documentoController.getNumeroElementos(titulo);
     }
     String[] exibirDocumento(String titulo) {
-        return documentoController.exibirDocumento(titulo);
+        return documentoController.exibeDocumento(titulo);
     }
     int criarTexto(String tituloDoc, String valor, int prioridade) {
         return documentoController.criarTexto(tituloDoc, valor, prioridade);
@@ -44,20 +42,20 @@ public class Facade {
         return documentoController.criarAtalho(tituloDoc, tituloDocReferenciado);
     }
     String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
-        return documentoController.exibeElementoCompleto(tituloDoc, elementoPosicao);
+        return documentoController.pegarRepresentacaoCompleta(tituloDoc, elementoPosicao);
 
     }
     String pegarRepresentacaoResumida(String tituloDoc, int elementoPosicao) {
-        return documentoController.exibeElementoResumido(tituloDoc, elementoPosicao);
+        return documentoController.pegarRepresentacaoResumida(tituloDoc, elementoPosicao);
     }
     boolean apagarElemento(String tituloDoc, int elementoPosicao) {
-        return documentoController.removeElemento(tituloDoc, elementoPosicao);
+        return documentoController.apagarElemento(tituloDoc, elementoPosicao);
     }
     void moverParaCima(String tituloDoc, int elementoPosicao) {
-        documentoController.moverAcima(tituloDoc, elementoPosicao);
+        documentoController.moverParaCima(tituloDoc, elementoPosicao);
     }
     void moverParaBaixo(String tituloDoc, int elementoPosicao) {
-        documentoController.moverAbaixo(tituloDoc, elementoPosicao);
+        documentoController.moverParaBaixo(tituloDoc, elementoPosicao);
 
     }
 
