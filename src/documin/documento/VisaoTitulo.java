@@ -1,5 +1,6 @@
 package documin.documento;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class VisaoTitulo implements Visivel {
@@ -10,13 +11,16 @@ public class VisaoTitulo implements Visivel {
 
     @Override
     public String[] exibirVisao() {
-        LinkedList<Elemento> elementos = doc.getElementos();
-        String[] retorno = new String[elementos.size()];
-        for (int i = 0; i < elementos.size(); i++) {
-            if (elementos.get(i).getClass() == ElementoTitulo.class) {
-                retorno[i] = elementos.get(i).representacaoCurta();
+        ArrayList<String> retorno = new ArrayList<>();
+        for (int i = 0; i < doc.getElementos().size(); i++) {
+            if (doc.getElementos().get(i).getClass() == ElementoTitulo.class) {
+                retorno.add(doc.exibeElementoResumido(i));
             }
         }
-        return retorno;
+        String[] ret = new String[retorno.size()];
+        for (int i = 0; i < retorno.size(); i++) {
+            ret[i] = retorno.get(i);
+        }
+        return ret;
     }
 }

@@ -1,5 +1,6 @@
 package documin.documento;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class VisaoPrioritaria implements Visivel {
@@ -12,13 +13,16 @@ public class VisaoPrioritaria implements Visivel {
 
     @Override
     public String[] exibirVisao() {
-        LinkedList<Elemento> elementos = doc.getElementos();
-        String[] retorno = new String[elementos.size()];
-        for (int i = 0; i < retorno.length; i++) {
-            if (elementos.get(i).getPrioridade() >= prioridade) {
-                retorno[i] = elementos.get(i).representacaoCurta();
+        ArrayList<String> retorno = new ArrayList<>();
+        for (int i = 0; i < doc.getNumElementos(); i++) {
+            if (doc.getPrioridade(i) >= prioridade) {
+                retorno.add(doc.exibeElementoCompleto(i));
             }
         }
-        return retorno;
+        String[] ret = new String[retorno.size()];
+        for (int i = 0; i < retorno.size(); i++) {
+            ret[i] = retorno.get(i);
+        }
+        return ret;
     }
 }

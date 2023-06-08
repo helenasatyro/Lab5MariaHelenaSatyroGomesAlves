@@ -1,6 +1,6 @@
 package documin.tests;
 
-import documin.documento.DocumentoController;
+import documin.documento.DocuminController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,15 +9,15 @@ import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DocumentoControllerTest {
+class DocuminControllerTest {
 
-    private DocumentoController dcUm;
-    private DocumentoController dcDois;
+    private DocuminController dcUm;
+    private DocuminController dcDois;
 
     @BeforeEach
     void setUp() {
-        this.dcUm = new DocumentoController();
-        this.dcDois = new DocumentoController();
+        this.dcUm = new DocuminController();
+        this.dcDois = new DocuminController();
         dcDois.criarDocumento("Doc1", 3);
 
     }
@@ -29,13 +29,13 @@ class DocumentoControllerTest {
     @Test
     void testaCriarDocIlimitado() {
         assertTrue(dcUm.criarDocumento("Doc1"));
-        assertEquals("[]", Arrays.toString(dcUm.exibeDocumento("Doc1")));
+        assertEquals("[]", Arrays.toString(dcUm.exibirDocumento("Doc1")));
     }
 
     @Test
     void testaCriarDocLimitado() {
         assertTrue(dcUm.criarDocumento("Doc1", 5));
-        assertEquals("[]", Arrays.toString(dcUm.exibeDocumento("Doc1")));
+        assertEquals("[]", Arrays.toString(dcUm.exibirDocumento("Doc1")));
     }
     @Test
     void testaCriarDocNomeInvalido() {
@@ -82,6 +82,10 @@ class DocumentoControllerTest {
         assertEquals(1, dcDois.criarTexto("Doc2", "Texto texto", 1 ));
         assertEquals(2, dcDois.criarTexto("Doc2", "Texto texto", 1 ));
         assertThrows(IllegalStateException.class, () -> dcDois.criarTexto("Doc2", "Texto texto", 1 ));
+        assertThrows(IllegalStateException.class, () -> dcDois.criarAtalho("Doc2", "Doc1"));
+        assertThrows(IllegalStateException.class, () -> dcDois.criarTitulo("Doc2", "Texto texto", 1, 1, false));
+        assertThrows(IllegalStateException.class, () -> dcDois.criarTermos("Doc2", "Texto, texto", 1, ", ", "Nenhum" ));
+        assertThrows(IllegalStateException.class, () -> dcDois.criarLista("Doc2", "Texto, texto", 1, ", ", "*" ));
     }
 
     @Test
@@ -89,7 +93,8 @@ class DocumentoControllerTest {
         dcDois.criarDocumento("Doc2", 3);
         assertThrows(IllegalArgumentException.class, () -> dcDois.criarTexto("", "Texto texto", 1 ));
         assertThrows(NoSuchElementException.class, () -> dcDois.criarTexto("DocX", "Texto texto", 1 ));
-
+        assertThrows(IllegalArgumentException.class, () -> dcDois.criarTexto("Doc2", "Texto texto", 0 ), "Não pode aceitar prioridade abaixo de 1");
+        assertThrows(IllegalArgumentException.class, () -> dcDois.criarTexto("Doc2", "Texto texto", 6 ), "Não pode aceitar prioridade acima de 5.");
     }
 
     @Test
@@ -113,12 +118,12 @@ class DocumentoControllerTest {
         dcDois.criarTexto("Doc2", "Texto texto", 1 );
         dcDois.criarTexto("Doc2", "Texto texto", 1 );
         dcDois.removeDocumento("Doc2");
-        assertThrows(NoSuchElementException.class, () -> dcDois.exibeDocumento("Doc2"));
+        assertThrows(NoSuchElementException.class, () -> dcDois.exibirDocumento("Doc2"));
     }
     @Test
     void testaRemoverDocParametroInvalido() {
-        assertThrows(IllegalArgumentException.class, () -> dcDois.exibeDocumento(""));
-        assertThrows(IllegalArgumentException.class, () -> dcDois.exibeDocumento("   "));
+        assertThrows(IllegalArgumentException.class, () -> dcDois.exibirDocumento(""));
+        assertThrows(IllegalArgumentException.class, () -> dcDois.exibirDocumento("   "));
     }
     @Test
     void testaRemoverDocInexistente() {
@@ -129,21 +134,21 @@ class DocumentoControllerTest {
     @Test
     void testaExibirDocumento() {
         dcDois.criarDocumento("Doc2", 3);
-        assertEquals("[]", Arrays.toString(dcDois.exibeDocumento("Doc2")));
-        assertEquals(0, dcDois.exibeDocumento("Doc2").length);
+        assertEquals("[]", Arrays.toString(dcDois.exibirDocumento("Doc2")));
+        assertEquals(0, dcDois.exibirDocumento("Doc2").length);
         dcDois.criarTexto("Doc2", "Texto texto", 1 );
-        assertEquals("[Texto texto\n]", Arrays.toString(dcDois.exibeDocumento("Doc2")));
-        assertEquals(1, dcDois.exibeDocumento("Doc2").length);
+        assertEquals("[Texto texto\n]", Arrays.toString(dcDois.exibirDocumento("Doc2")));
+        assertEquals(1, dcDois.exibirDocumento("Doc2").length);
         dcDois.criarTexto("Doc2", "Mais Texto", 1 );
-        assertEquals("[Texto texto\n, Mais Texto\n]", Arrays.toString(dcDois.exibeDocumento("Doc2")));
-        assertEquals(2, dcDois.exibeDocumento("Doc2").length);
+        assertEquals("[Texto texto\n, Mais Texto\n]", Arrays.toString(dcDois.exibirDocumento("Doc2")));
+        assertEquals(2, dcDois.exibirDocumento("Doc2").length);
     }
     @Test
     void testaExibirDocumentoParamInvalido() {
         dcDois.criarDocumento("Doc2", 3);
-        assertThrows(NoSuchElementException.class, () -> dcDois.exibeDocumento("DocInexistente"));
-        assertThrows(IllegalArgumentException.class, () -> dcDois.exibeDocumento(""));
-        assertThrows(IllegalArgumentException.class, () -> dcDois.exibeDocumento("   "));
+        assertThrows(NoSuchElementException.class, () -> dcDois.exibirDocumento("DocInexistente"));
+        assertThrows(IllegalArgumentException.class, () -> dcDois.exibirDocumento(""));
+        assertThrows(IllegalArgumentException.class, () -> dcDois.exibirDocumento("   "));
     }
 
     @Test
@@ -192,14 +197,14 @@ class DocumentoControllerTest {
 
         dcUm.criarDocumento("Doc Referenciado Baixa Prioridade");
         dcUm.criarTexto("Doc Referenciado Baixa Prioridade", "texto referenciado nao aparece", 2);
-        assertEquals("[um dois tres\n]", Arrays.toString(dcUm.exibeDocumento("Doc Com Atalho")));
+        assertEquals("[um dois tres\n]", Arrays.toString(dcUm.exibirDocumento("Doc Com Atalho")));
 
 
         dcUm.criarDocumento("Doc Referenciado");
         dcUm.criarTexto("Doc Referenciado", "texto referenciado", 4);
 
         dcUm.criarAtalho("Doc Com Atalho","Doc Referenciado");
-        assertEquals("[um dois tres\n, texto referenciado\n]", Arrays.toString(dcUm.exibeDocumento("Doc Com Atalho")));
+        assertEquals("[um dois tres\n, texto referenciado\n]", Arrays.toString(dcUm.exibirDocumento("Doc Com Atalho")));
         assertEquals(2, dcUm.getNumeroElementos("Doc Com Atalho"));
     }
     @Test
@@ -213,6 +218,16 @@ class DocumentoControllerTest {
 
         dcUm.criarDocumento("NovoDoc");
         assertThrows(IllegalStateException.class, () -> dcUm.criarAtalho("NovoDoc","Doc Com Atalho"));
+    }
+    @Test
+    void testaCriarAtalhoSemElementos() {
+        dcUm.criarDocumento("Doc Referenciado");
+
+        dcUm.criarDocumento("Doc Com Atalho");
+        dcUm.criarTexto("Doc Com Atalho", "um dois tres", 2);
+        // deve lançar excecão pois não tem como calcular a prioridade
+        assertThrows(IllegalArgumentException.class, () -> dcUm.criarAtalho("Doc Com Atalho", "Doc Referenciado"));
+
     }
     @Test
     void testaCriarAtalhoElementoEhAtalho() {
@@ -242,7 +257,7 @@ class DocumentoControllerTest {
         assertEquals("[um dois tres\n" +
                 ", texto referenciado\n" +
                 ", texto referenciado 2\n" +
-                "]", Arrays.toString(dcUm.exibeDocumento("Doc Com Atalho")));
+                "]", Arrays.toString(dcUm.exibirDocumento("Doc Com Atalho")));
     }
 
     @Test
@@ -256,4 +271,66 @@ class DocumentoControllerTest {
 
         assertEquals("* um\n* dois\n* tres\n", dcUm.pegarRepresentacaoCompleta("Doc Com Atalho", 1));
     }
+
+    @Test
+    void testaMoveParaCima() {
+        dcUm.criarDocumento("Doc1", 3);
+        dcUm.criarTexto("Doc1", "texto1", 5);
+        dcUm.criarTexto("Doc1", "texto2", 5);
+
+        assertEquals("[texto1\n, texto2\n]", Arrays.toString(dcUm.exibirDocumento("Doc1")));
+
+        dcUm.moverParaCima("Doc1", 1);
+        assertEquals("[texto2\n, texto1\n]", Arrays.toString(dcUm.exibirDocumento("Doc1")));
+    }
+    @Test
+    void testaMoveParaCimaPrimeiro() {
+        dcUm.criarDocumento("Doc1", 3);
+        dcUm.criarTexto("Doc1", "texto1", 5);
+        dcUm.criarTexto("Doc1", "texto2", 5);
+
+        assertEquals("[texto1\n, texto2\n]", Arrays.toString(dcUm.exibirDocumento("Doc1")));
+
+        dcUm.moverParaCima("Doc1", 0);
+        assertEquals("[texto1\n, texto2\n]", Arrays.toString(dcUm.exibirDocumento("Doc1")));
+    }
+    @Test
+    void testaMoveParaBaixo() {
+        dcUm.criarDocumento("Doc1", 3);
+        dcUm.criarTexto("Doc1", "texto1", 5);
+        dcUm.criarTexto("Doc1", "texto2", 5);
+
+        assertEquals("[texto1\n, texto2\n]", Arrays.toString(dcUm.exibirDocumento("Doc1")));
+
+        dcUm.moverParaBaixo("Doc1", 0);
+        assertEquals("[texto2\n, texto1\n]", Arrays.toString(dcUm.exibirDocumento("Doc1")));
+    }
+    @Test
+    void testaMoveParaBaixoUltimo() {
+        dcUm.criarDocumento("Doc1", 3);
+        dcUm.criarTexto("Doc1", "texto1", 5);
+        dcUm.criarTexto("Doc1", "texto2", 5);
+
+        assertEquals("[texto1\n, texto2\n]", Arrays.toString(dcUm.exibirDocumento("Doc1")));
+
+        dcUm.moverParaBaixo("Doc1", 1);
+        assertEquals("[texto1\n, texto2\n]", Arrays.toString(dcUm.exibirDocumento("Doc1")));
+    }
+
+    @Test
+    void TestaRemoveElemento() {
+        dcUm.criarDocumento("Doc1", 3);
+        dcUm.criarTexto("Doc1", "texto1", 5);
+        dcUm.criarTexto("Doc1", "texto2", 5);
+
+        assertEquals("[texto1\n, texto2\n]", Arrays.toString(dcUm.exibirDocumento("Doc1")));
+
+        dcUm.apagarElemento("Doc1", 1);
+        assertEquals(1, dcUm.getNumeroElementos("Doc1"));
+        assertEquals("[texto1\n]", Arrays.toString(dcUm.exibirDocumento("Doc1")));
+
+        dcUm.apagarElemento("Doc1", 0);
+        assertEquals("[]", Arrays.toString(dcUm.exibirDocumento("Doc1")));
+    }
+
 }

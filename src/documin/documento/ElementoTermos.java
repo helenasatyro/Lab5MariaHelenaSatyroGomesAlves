@@ -4,10 +4,22 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 
+/**
+ * Classe que implementa um elemento que é um conjunto de termos. O elemento termos tem
+ * uma string de termos separados por um separador, uma prioridade (1 a 5) e pode ter uma ordem para s termos;
+ * Alfabética, Tamanho ou Nenhuma
+ */
 public class ElementoTermos extends Elemento {
     private HashMap<String, String> propriedades;
 
-    ElementoTermos(String valor, int prioridade, String separador, Ordem ordem) {
+    /**
+     * Cria um elemento de termos.
+     * @param valor termos separados pelo separador
+     * @param prioridade do elemento, 1 a 5
+     * @param separador
+     * @param ordem ALFABÉTICA, TAMANHO, NENHUM
+     */
+    public ElementoTermos(String valor, int prioridade, String separador, Ordem ordem) {
         super(prioridade, valor);
         this.propriedades = new HashMap<>();
         // o pipe | em regex significa OR, então para usá-lo como separador é necessário escapá-lo
@@ -16,8 +28,14 @@ public class ElementoTermos extends Elemento {
         this.propriedades.put("ordem", ordem.toString());
     }
 
+    /**
+     * A representação completa do elemento termos tem o formato:
+     * Total termos - <numero de termos>
+     * Temrmo1, termo2, temro3
+     * @return string representando os termos
+     */
     @Override
-    String representacaoCompleta() {
+    public String representacaoCompleta() {
         String[] conteudo = this.valor.split(propriedades.get("separador"));
 
         switch (propriedades.get("ordem")) {
@@ -32,8 +50,13 @@ public class ElementoTermos extends Elemento {
         return retorno;
     }
 
+    /**
+     * A representação curta do elemento termos é dada pelos termos separados por "/" no formato
+     * termo1 / termo2 / termo3
+     * @return string com os termos
+     */
     @Override
-     String representacaoCurta() {
+    public String representacaoCurta() {
         String[] conteudo = valor.split(propriedades.get("separador"));
 
         switch (propriedades.get("ordem")) {

@@ -78,7 +78,8 @@ class FacadeTest {
         facade.criarDocumento("Doc2", 3);
         assertThrows(IllegalArgumentException.class, () -> facade.criarTexto("", "Texto texto", 1 ));
         assertThrows(NoSuchElementException.class, () -> facade.criarTexto("DocX", "Texto texto", 1 ));
-
+        assertThrows(IllegalArgumentException.class, () -> facade.criarTexto("Doc2", "Texto texto", 0 ), "Não pode aceitar prioridade abaixo de 1");
+        assertThrows(IllegalArgumentException.class, () -> facade.criarTexto("Doc2", "Texto texto", 6 ), "Não pode aceitar prioridade acima de 5.");
     }
 
     @Test
@@ -131,6 +132,8 @@ class FacadeTest {
     void testaExibirDocumentoParamInvalido() {
         facade.criarDocumento("Doc2", 3);
         assertThrows(NoSuchElementException.class, () -> facade.exibirDocumento("DocInexistente"));
+        assertThrows(IllegalArgumentException.class, () -> facade.exibirDocumento(""));
+        assertThrows(IllegalArgumentException.class, () -> facade.exibirDocumento("   "));
         assertThrows(IllegalArgumentException.class, () -> facade.exibirDocumento(""));
         assertThrows(IllegalArgumentException.class, () -> facade.exibirDocumento("   "));
     }
@@ -214,6 +217,16 @@ class FacadeTest {
         assertThrows(IllegalStateException.class, () -> facade.criarAtalho("Doc Referenciado","NovoDoc"));
     }
     @Test
+    void testaCriarAtalhoSemElementos() {
+        facade.criarDocumento("Doc Referenciado");
+
+        facade.criarDocumento("Doc Com Atalho");
+        facade.criarTexto("Doc Com Atalho", "um dois tres", 2);
+        // deve lançar excecão pois não tem como calcular a prioridade
+        assertThrows(IllegalArgumentException.class, () -> facade.criarAtalho("Doc Com Atalho", "Doc Referenciado"));
+
+    }
+    @Test
     void testaCriarDoisAtalhos() {
         facade.criarDocumento("Doc Referenciado");
         facade.criarTexto("Doc Referenciado", "texto referenciado", 4);
@@ -242,4 +255,67 @@ class FacadeTest {
 
         assertEquals("* um\n* dois\n* tres\n", facade.pegarRepresentacaoCompleta("Doc Com Atalho", 1));
     }
+    @Test
+    void testaMoveParaCima() {
+        facade.criarDocumento("Doc1", 3);
+        facade.criarTexto("Doc1", "texto1", 5);
+        facade.criarTexto("Doc1", "texto2", 5);
+
+        assertEquals("[texto1\n, texto2\n]", Arrays.toString(facade.exibirDocumento("Doc1")));
+
+        facade.moverParaCima("Doc1", 1);
+        assertEquals("[texto2\n, texto1\n]", Arrays.toString(facade.exibirDocumento("Doc1")));
+    }
+    @Test
+    void testaMoveParaCimaPrimeiro() {
+        facade.criarDocumento("Doc1", 3);
+        facade.criarTexto("Doc1", "texto1", 5);
+        facade.criarTexto("Doc1", "texto2", 5);
+
+        assertEquals("[texto1\n, texto2\n]", Arrays.toString(facade.exibirDocumento("Doc1")));
+
+        facade.moverParaCima("Doc1", 0);
+        assertEquals("[texto1\n, texto2\n]", Arrays.toString(facade.exibirDocumento("Doc1")));
+    }
+    @Test
+    void testaMoveParaBaixo() {
+        facade.criarDocumento("Doc1", 3);
+        facade.criarTexto("Doc1", "texto1", 5);
+        facade.criarTexto("Doc1", "texto2", 5);
+
+        assertEquals("[texto1\n, texto2\n]", Arrays.toString(facade.exibirDocumento("Doc1")));
+
+        facade.moverParaBaixo("Doc1", 0);
+        assertEquals("[texto2\n, texto1\n]", Arrays.toString(facade.exibirDocumento("Doc1")));
+    }
+    @Test
+    void testaMoveParaBaixoUltimo() {
+        facade.criarDocumento("Doc1", 3);
+        facade.criarTexto("Doc1", "texto1", 5);
+        facade.criarTexto("Doc1", "texto2", 5);
+
+        assertEquals("[texto1\n, texto2\n]", Arrays.toString(facade.exibirDocumento("Doc1")));
+
+        facade.moverParaBaixo("Doc1", 1);
+        assertEquals("[texto1\n, texto2\n]", Arrays.toString(facade.exibirDocumento("Doc1")));
+    }
+
+    @Test
+    void TestaRemoveElemento() {
+        facade.criarDocumento("Doc1", 3);
+        facade.criarTexto("Doc1", "texto1", 5);
+        facade.criarTexto("Doc1", "texto2", 5);
+
+        assertEquals("[texto1\n, texto2\n]", Arrays.toString(facade.exibirDocumento("Doc1")));
+
+        facade.apagarElemento("Doc1", 1);
+        assertEquals(1, facade.contarElementos("Doc1"));
+        assertEquals("[texto1\n]", Arrays.toString(facade.exibirDocumento("Doc1")));
+
+        facade.apagarElemento("Doc1", 0);
+        assertEquals("[]", Arrays.toString(facade.exibirDocumento("Doc1")));
+    }
+
+    testa eh atalho depois deremover
+    testar récalculo de prioridade no atalho
 }

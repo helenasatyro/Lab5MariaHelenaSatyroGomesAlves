@@ -1,4 +1,6 @@
-package documin.documento;
+package documin.tests;
+import documin.documento.ElementoTermos;
+import documin.documento.Ordem;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
