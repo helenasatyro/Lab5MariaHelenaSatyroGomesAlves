@@ -1,14 +1,25 @@
 package documin.documento;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-
+/**
+ * Classe que implementa uma visualização de um documento. A visão título consiste em um array
+ * de strings em que cada uma é a representação resumida dos elementos do tipo título de um documento.
+ */
 public class VisaoTitulo implements Visivel {
     private Documento doc;
-    VisaoTitulo(Documento doc) {
+    /**
+     * Cria uma visão baseada num documento.
+     * Mudanças no documento após a criação da visão alteram a visão.
+     * @param doc base da visão
+     */
+    public VisaoTitulo(Documento doc) {
         this.doc = doc;
     }
-
+    /**
+     * Constrói a visão do documento consistindo nas representações resumidas
+     * de cada elemento do tipo título de um documento.
+     * @return array de strings com cada elemento título do documento
+     */
     @Override
     public String[] exibirVisao() {
         ArrayList<String> retorno = new ArrayList<>();

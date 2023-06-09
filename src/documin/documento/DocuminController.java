@@ -64,7 +64,7 @@ public class DocuminController {
      */
     public int criarTexto(String tituloDoc, String valor, int prioridade) {
         Documento doc = buscaPorTitulo(tituloDoc);
-        return doc.addTexto(valor, prioridade);
+        return doc.criarTexto(valor, prioridade);
     }
     /**
      * Cria um elemento do tipo título no documento especificado
@@ -77,7 +77,7 @@ public class DocuminController {
      */
     public int criarTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
         Documento doc = buscaPorTitulo(tituloDoc);
-        return doc.addTitulo(valor, prioridade, nivel, linkavel);
+        return doc.criarTitulo(valor, prioridade, nivel, linkavel);
     }
     /**
      * Cria um elemento do tipo termos no documento especificado
@@ -90,7 +90,7 @@ public class DocuminController {
      */
     public int criarTermos(String tituloDoc, String valor, int prioridade, String separador, String ordem) {
         Documento doc = buscaPorTitulo(tituloDoc);
-        return doc.addTermos(valor, prioridade, separador, ordem);
+        return doc.criarTermos(valor, prioridade, separador, ordem);
     }
     /**
      * Cria um elemento do tipo lista no documento especificado
@@ -103,7 +103,7 @@ public class DocuminController {
      */
     public int criarLista(String tituloDoc, String valor, int prioridade, String separador, String caractere) {
         Documento doc = buscaPorTitulo(tituloDoc);
-        return doc.addLista(valor, prioridade, separador, caractere);
+        return doc.criarLista(valor, prioridade, separador, caractere);
     }
     /**
      * Cria um elemento atalho no documento especificado.
@@ -115,9 +115,8 @@ public class DocuminController {
      */
     public int criarAtalho(String tituloDoc, String docReferenciado) {
         Documento doc = buscaPorTitulo(tituloDoc);
-        if (doc.getEhAtalho()) throw new IllegalStateException("Documento é referenciado como atalho em outro documento e não pode receber atalhos.");
         Documento docRef = buscaPorTitulo(docReferenciado);
-        return doc.addAtalho(docRef);
+        return doc.criarAtalho(docRef);
     }
     /**
      * Retorna a quantidade de elementos de um documento, buscado pelo título.

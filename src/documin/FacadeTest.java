@@ -2,7 +2,6 @@ package documin;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -141,18 +140,18 @@ class FacadeTest {
     @Test
     void testaCriaTermos() {
         facade.criarTermos("Doc1", "termo | outro | mais um", 1, "|", "alfabetica");
-        assertEquals("Total termos: 3\n-  mais um,  outro , termo ", facade.pegarRepresentacaoCompleta("Doc1", 0));
-        assertEquals(" mais um /  outro  / termo ", facade.pegarRepresentacaoResumida("Doc1", 0));
+        assertEquals("Total termos: 3\n-  mais um,  outro , termo \n", facade.pegarRepresentacaoCompleta("Doc1", 0));
+        assertEquals(" mais um /  outro  / termo \n", facade.pegarRepresentacaoResumida("Doc1", 0));
 
         facade.criarTermos("Doc1", "termo | um | mais um", 1, "|", "tamanho");
-        assertEquals("Total termos: 3\n-  mais um, termo ,  um ",
+        assertEquals("Total termos: 3\n-  mais um, termo ,  um \n",
                 facade.pegarRepresentacaoCompleta("Doc1", 1));
-        assertEquals(" mais um / termo  /  um ", facade.pegarRepresentacaoResumida("Doc1", 1));
+        assertEquals(" mais um / termo  /  um \n", facade.pegarRepresentacaoResumida("Doc1", 1));
 
         facade.criarTermos("Doc1","termo | outro | mais um", 1, "|", "nenhum");
         assertEquals("Total termos: 3\n" +
-                "- termo ,  outro ,  mais um", facade.pegarRepresentacaoCompleta("Doc1", 2));
-        assertEquals("termo  /  outro  /  mais um", facade.pegarRepresentacaoResumida("Doc1", 2));
+                "- termo ,  outro ,  mais um\n", facade.pegarRepresentacaoCompleta("Doc1", 2));
+        assertEquals("termo  /  outro  /  mais um\n", facade.pegarRepresentacaoResumida("Doc1", 2));
     }
 
     @Test
@@ -315,7 +314,120 @@ class FacadeTest {
         facade.apagarElemento("Doc1", 0);
         assertEquals("[]", Arrays.toString(facade.exibirDocumento("Doc1")));
     }
+    @Test
+    void TestaRemoverElementoAtalhoPermiteAdicionarAtalhosAoDocumentoReferenciado() {
+        facade.criarDocumento("DocRef", 3);
+        facade.criarTexto("DocRef", "texto1", 5);
 
-    testa eh atalho depois deremover
-    testar récalculo de prioridade no atalho
+        // deve ser possível adicionar um atalho ao doc2 referenciando o docref
+        facade.criarDocumento("Doc2");
+        facade.criarTexto("Doc2", "texto2", 5);
+        facade.criarAtalho("Doc2", "DocRef");
+        assertEquals("[texto2\n, texto1\n]", Arrays.toString(facade.exibirDocumento("Doc2")));
+
+        // então docref não poderá receber atalhos
+        facade.criarDocumento("Doc3");
+        facade.criarTexto("Doc3", "texto3", 5);
+        assertThrows(IllegalStateException.class, () -> facade.criarAtalho("DocRef", "Doc3"));
+
+        // removemos o atalho de doc2 que referencia docRef
+        facade.apagarElemento("Doc2", 1);
+        facade.criarAtalho("DocRef", "Doc3");
+
+        // então podemos adicionar atalhos ao docRef
+        assertEquals("[texto1\n, texto3\n]", Arrays.toString(facade.exibirDocumento("DocRef")));
+    }
+    @Test
+    void testaVisaoCompleta() {
+        facade.criarDocumento("Doc1");
+        facade.criarTexto("Doc1", "Elemento texto prioridade 1", 1);
+        facade.criarTermos("Doc1", "Elemento / termos / prioridade 4",4, "/", "nenhum");
+        facade.criarLista("Doc1", "Lista . prioridade . 3", 3, " . ", "*");
+        // Criamos a visão completa aqui para checar depois se ela é atualizada
+        assertEquals("""
+                [Elemento texto prioridade 1
+                , Total termos: 3
+                - Elemento ,  termos ,  prioridade 4
+                , * Lista
+                * prioridade
+                * 3
+                ]""", Arrays.toString(facade.exibirVisao(facade.criarVisaoCompleta("Doc1"))));
+        facade.criarTitulo("Doc1", "Titulo p5", 5, 2, true);
+        facade.criarDocumento("DocRef");
+        facade.criarTexto("DocRef", "Elemento texto prioridade 5", 5);
+        facade.criarAtalho("Doc1", "DocRef");
+        assertEquals("""
+                [Elemento texto prioridade 1
+                , Total termos: 3
+                - Elemento ,  termos ,  prioridade 4
+                , * Lista
+                * prioridade
+                * 3
+                , 2. Titulo p5 -- 2-TITULOP5
+                , Elemento texto prioridade 5
+                ]""", Arrays.toString(facade.exibirVisao(facade.criarVisaoCompleta("Doc1"))));
+
+    }
+    @Test
+    void testaVisaoResumida() {
+        facade.criarDocumento("Doc1");
+        facade.criarTexto("Doc1", "Elemento texto prioridade 1", 1);
+        facade.criarTermos("Doc1", "Elemento / termos / prioridade 4",4, "/", "nenhum");
+        facade.criarLista("Doc1", "Lista . prioridade . 3", 3, " . ", "*");
+        // Criamos a visão completa aqui para checar depois se ela é atualizada
+        assertEquals("""
+                [Elemento texto prioridade 1
+                , Elemento  /  termos  /  prioridade 4
+                , Lista, prioridade, 3
+                ]""", Arrays.toString(facade.exibirVisao(facade.criarVisaoResumida("Doc1"))));
+        facade.criarTitulo("Doc1", "Titulo p5", 5, 2, true);
+        facade.criarDocumento("DocRef");
+        facade.criarTexto("DocRef", "Elemento texto prioridade 5", 5);
+        facade.criarAtalho("Doc1", "DocRef");
+        assertEquals("""
+                [Elemento texto prioridade 1
+                , Elemento  /  termos  /  prioridade 4
+                , Lista, prioridade, 3
+                , 2. Titulo p5
+                , Elemento texto prioridade 5
+                ]""", Arrays.toString(facade.exibirVisao(facade.criarVisaoResumida("Doc1"))));
+    }
+    @Test
+    void testaVisaoPrioritaria() {
+        facade.criarDocumento("Doc1");
+        facade.criarTexto("Doc1", "Elemento texto prioridade 1", 1);
+        facade.criarTermos("Doc1", "Elemento / termos / prioridade 4",4, "/", "nenhum");
+        facade.criarLista("Doc1", "Lista . prioridade . 3", 3, " . ", "*");
+        // Criamos a visão completa aqui para checar depois se ela é atualizada
+        assertEquals("""
+                [Total termos: 3
+                - Elemento ,  termos ,  prioridade 4
+                ]""", Arrays.toString(facade.exibirVisao(facade.criarVisaoPrioritaria("Doc1", 4))));
+        facade.criarTitulo("Doc1", "Titulo p5", 5, 2, true);
+        facade.criarDocumento("DocRef");
+        facade.criarTexto("DocRef", "Elemento texto prioridade 5", 5);
+        facade.criarAtalho("Doc1", "DocRef");
+        assertEquals("""
+                [Total termos: 3
+                - Elemento ,  termos ,  prioridade 4
+                , 2. Titulo p5 -- 2-TITULOP5
+                , Elemento texto prioridade 5
+                ]""", Arrays.toString(facade.exibirVisao(facade.criarVisaoPrioritaria("Doc1", 4))));
+
+    }
+    @Test
+    void testaVisaoTitulo() {
+        facade.criarDocumento("Doc1");
+        facade.criarTexto("Doc1", "Elemento texto prioridade 1", 1);
+        facade.criarTermos("Doc1", "Elemento / termos / prioridade 4",4, "/", "nenhum");
+        facade.criarLista("Doc1", "Lista . prioridade . 3", 3, " . ", "*");
+        // Criamos a visão completa aqui para checar depois se ela é atualizada
+        assertEquals("[]", Arrays.toString(facade.exibirVisao(facade.criarVisaoTitulo("Doc1"))));
+        facade.criarTitulo("Doc1", "Titulo p5", 5, 2, true);
+        facade.criarDocumento("DocRef");
+        facade.criarTexto("DocRef", "Elemento texto prioridade 5", 5);
+        facade.criarAtalho("Doc1", "DocRef");
+        assertEquals("[2. Titulo p5\n]", Arrays.toString(facade.exibirVisao(facade.criarVisaoTitulo("Doc1"))));
+    }
+
 }

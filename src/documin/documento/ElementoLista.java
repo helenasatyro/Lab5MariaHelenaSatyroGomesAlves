@@ -1,6 +1,7 @@
 package documin.documento;
 
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 /**
  * Classe que implementa um element no formato de lista. Uma lista tem elementos,
@@ -18,9 +19,8 @@ public class ElementoLista extends Elemento {
      */
     public ElementoLista(String valor, int prioridade, String separador, String caractere) {
         super(prioridade, valor);
-        this.propriedades = new HashMap<String,String>();
+        this.propriedades = new HashMap<>();
         // o pipe | em regex significa OR, então para usá-lo como separador é necessário escapá-lo
-        if (separador.equals("|")) separador = "\\|";
         this.propriedades.put("separador", separador);
         this.propriedades.put("caractere", caractere);
     }
@@ -36,7 +36,7 @@ public class ElementoLista extends Elemento {
      */
     @Override
     public String representacaoCompleta() {
-       String[] conteudo = valor.split(propriedades.get("separador"));
+       String[] conteudo = valor.split(Pattern.quote(propriedades.get("separador")));
        String retorno = "";
        for (String el: conteudo) {
            retorno += propriedades.get("caractere") + " " + el + "\n";
@@ -50,7 +50,7 @@ public class ElementoLista extends Elemento {
      */
     @Override
     public String representacaoCurta() {
-        String[] conteudo = valor.split(propriedades.get("separador"));
+        String[] conteudo = valor.split(Pattern.quote(propriedades.get("separador")));
         String retorno = conteudo[0];
         for (int i = 1; i < conteudo.length; i++) {
             retorno += ", " + conteudo[i];

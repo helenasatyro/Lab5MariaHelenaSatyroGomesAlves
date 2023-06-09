@@ -4,14 +4,14 @@ package documin.documento;
  * Classe que representa um elemento básico de texto que pode ser adicionado a um documento.
  * Um elemento deve ter uma prioridade (1 a 5 inclusive) e um valor.
  */
-public class Elemento implements Cloneable {
+public class Elemento {
     protected int prioridade;
     protected String valor;
 
     /**
      * Cria um elemento de texto básico que tem uma prioridade e um valor textual
-     * @param prioridade
-     * @param valor
+     * @param prioridade do elemento
+     * @param valor conteúdo textual do elemento
      */
     public Elemento(int prioridade, String valor) {
         if (!(prioridade >= 1 && prioridade <= 5)) throw new IllegalArgumentException();

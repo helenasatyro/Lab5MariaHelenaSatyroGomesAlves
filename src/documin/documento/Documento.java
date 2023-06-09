@@ -20,7 +20,7 @@ public class Documento {
      * @throws  IllegalArgumentException se o título passado for nulo ou vazio.
      */
     public Documento(String titulo) {
-        if (titulo.isEmpty()) throw new IllegalArgumentException();
+        if (titulo.isEmpty() || titulo.isBlank()) throw new IllegalArgumentException();
         this.titulo = titulo;
         this.tamanho = -1;
         this.elementos = new LinkedList<>();
@@ -34,8 +34,7 @@ public class Documento {
      * @throws IllegalArgumentException se o título passado for nulo ou vazio, ou o tamaho passado for menor que zero.
      */
     public Documento(String titulo, int tamanho) {
-        if (titulo.isEmpty()) throw new IllegalArgumentException();
-        this.titulo = titulo;
+        if (titulo.isEmpty() || titulo.isBlank()) throw new IllegalArgumentException();        this.titulo = titulo;
         if (tamanho <= 0) throw new IllegalArgumentException();
         this.tamanho = tamanho;
         this.elementos = new LinkedList<>();
@@ -47,7 +46,7 @@ public class Documento {
      * @param prioridade a prioridade do elemento (1 a 5)
      * @return a posição do elemento no documento
      */
-    public int addTexto(String valor, int prioridade) {
+    public int criarTexto(String valor, int prioridade) {
         if (tamanho == -1 || elementos.size() < tamanho) {
             elementos.add(new Elemento(prioridade, valor));
             return elementos.size() -1;
@@ -62,7 +61,7 @@ public class Documento {
      * @param linkavel se ele é ou não linkável
      * @return a posição do elemento no documento
      */
-    public int addTitulo(String valor, int prioridade, int nivel, boolean linkavel) {
+    public int criarTitulo(String valor, int prioridade, int nivel, boolean linkavel) {
         if (tamanho == -1 || elementos.size() < tamanho) {
             elementos.add(new ElementoTitulo(valor, prioridade, nivel, linkavel));
             return elementos.size() -1;
@@ -86,7 +85,7 @@ public class Documento {
      * @param caractere caractere que deve ser usado na representação da lista
      * @return posição do elemento no documento
      */
-    public int addLista(String valor, int prioridade, String separador, String caractere) {
+    public int criarLista(String valor, int prioridade, String separador, String caractere) {
         if (tamanho == -1 || elementos.size() < tamanho) {
             elementos.add(new ElementoLista(valor, prioridade, separador, caractere));
             return elementos.size() -1;
@@ -101,7 +100,7 @@ public class Documento {
      * @param ordem forma de ordenação que pode ser usada para os termos (nenhuma, alfabetica ou tamanho)
      * @return posição do elemento no documento
      */
-    public int addTermos(String valor, int prioridade, String separador, String ordem) {
+    public int criarTermos(String valor, int prioridade, String separador, String ordem) {
         Ordem o;
         if (tamanho == -1 || elementos.size() < tamanho) {
             if (ordem.equalsIgnoreCase("alfabetica") || ordem.equalsIgnoreCase("alfabética")) {
@@ -124,7 +123,8 @@ public class Documento {
      * @param doc que será referenciado
      * @return a posição do elemento no documento
      */
-    public int addAtalho(Documento doc) {
+    public int criarAtalho(Documento doc) {
+        if (getEhAtalho()) throw new IllegalStateException("Documento é referenciado como atalho em outro documento e não pode receber atalhos.");
         for (Elemento el: doc.getElementos()) {
             if (el.getClass() == ElementoAtalho.class) throw new IllegalStateException();
         }
@@ -138,10 +138,10 @@ public class Documento {
 
     /**
      * Define o documento como atalho de outro documento ou remove a condição de atalho
-     * @param at true ou false informando se é atalho ou não.
+     * @param ehAt true ou false informando se é atalho ou não.
      */
-    public void setEhAtalho(boolean at) {
-        this.ehAtalho = at;
+    public void setEhAtalho(boolean ehAt) {
+        this.ehAtalho = ehAt;
     }
 
     /**

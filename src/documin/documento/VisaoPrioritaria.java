@@ -1,16 +1,30 @@
 package documin.documento;
 
+/**
+ * Classe que implementa uma visualização de um documento. A visão prioritária consiste em um array
+ * de strings em que cada uma é a representação completa dos elementos de um documenot cuja prioridade é
+ * maior ou igual ao valor passado como parâmetro.
+ */
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class VisaoPrioritaria implements Visivel {
     private Documento doc;
     private int prioridade;
-    VisaoPrioritaria(Documento doc, int prioridade) {
+    /**
+     * Cria uma visão baseada num documento.
+     * Mudanças no documento após a criação da visão alteram a visão.
+     * @param doc base da visão
+     * @param prioridade mínima para que o elemento seja representado na visão
+     */
+    public VisaoPrioritaria(Documento doc, int prioridade) {
         this.doc = doc;
         this.prioridade = prioridade;
     }
-
+    /**
+     * Constrói a visão do documento consistindo nas representações completas
+     * de cada elemeto do documento cuja prioridade é maior ou igual ao valor passado como parâmetro.
+     * @return array de strings com cada elemento do documento
+     */
     @Override
     public String[] exibirVisao() {
         ArrayList<String> retorno = new ArrayList<>();

@@ -29,7 +29,7 @@ public class ElementoTitulo extends Elemento {
      */
     @Override
     public String representacaoCompleta() {
-        if (propriedades.get("linkavel").equals("true")) { return getPrioridade() + ". " + this.valor + " -- " + propriedades.get("nivel") + "-" + valor.toUpperCase().replaceAll(" ", "") + "\n"; }
+        if (propriedades.get("linkavel").equals("true")) { return propriedades.get("nivel") + ". " + this.valor + " -- " + propriedades.get("nivel") + "-" + valor.toUpperCase().replaceAll(" ", "") + "\n"; }
         return propriedades.get("nivel") + ". " + this.valor + "\n";
     }
 

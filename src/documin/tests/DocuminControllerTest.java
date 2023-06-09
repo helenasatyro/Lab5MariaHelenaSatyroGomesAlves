@@ -3,7 +3,6 @@ package documin.tests;
 import documin.documento.DocuminController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -19,7 +18,6 @@ class DocuminControllerTest {
         this.dcUm = new DocuminController();
         this.dcDois = new DocuminController();
         dcDois.criarDocumento("Doc1", 3);
-
     }
     @Test
     void testaBuscaDocInexistente() {
@@ -154,18 +152,18 @@ class DocuminControllerTest {
     @Test
     void testaCriaTermos() {
         dcDois.criarTermos("Doc1", "termo | outro | mais um", 1, "|", "alfabetica");
-        assertEquals("Total termos: 3\n-  mais um,  outro , termo ", dcDois.pegarRepresentacaoCompleta("Doc1", 0));
-        assertEquals(" mais um /  outro  / termo ", dcDois.pegarRepresentacaoResumida("Doc1", 0));
+        assertEquals("Total termos: 3\n-  mais um,  outro , termo \n", dcDois.pegarRepresentacaoCompleta("Doc1", 0));
+        assertEquals(" mais um /  outro  / termo \n", dcDois.pegarRepresentacaoResumida("Doc1", 0));
 
         dcDois.criarTermos("Doc1", "termo | um | mais um", 1, "|", "tamanho");
-        assertEquals("Total termos: 3\n-  mais um, termo ,  um ",
+        assertEquals("Total termos: 3\n-  mais um, termo ,  um \n",
                 dcDois.pegarRepresentacaoCompleta("Doc1", 1));
-        assertEquals(" mais um / termo  /  um ", dcDois.pegarRepresentacaoResumida("Doc1", 1));
+        assertEquals(" mais um / termo  /  um \n", dcDois.pegarRepresentacaoResumida("Doc1", 1));
 
         dcDois.criarTermos("Doc1","termo | outro | mais um", 1, "|", "nenhum");
         assertEquals("Total termos: 3\n" +
-                "- termo ,  outro ,  mais um", dcDois.pegarRepresentacaoCompleta("Doc1", 2));
-        assertEquals("termo  /  outro  /  mais um", dcDois.pegarRepresentacaoResumida("Doc1", 2));
+                "- termo ,  outro ,  mais um\n", dcDois.pegarRepresentacaoCompleta("Doc1", 2));
+        assertEquals("termo  /  outro  /  mais um\n", dcDois.pegarRepresentacaoResumida("Doc1", 2));
     }
 
     @Test
@@ -332,5 +330,120 @@ class DocuminControllerTest {
         dcUm.apagarElemento("Doc1", 0);
         assertEquals("[]", Arrays.toString(dcUm.exibirDocumento("Doc1")));
     }
+    @Test
+    void TestaRemoverElementoAtalhoPermiteAdicionarAtalhosAoDocumentoReferenciado() {
+        dcUm.criarDocumento("DocRef", 3);
+        dcUm.criarTexto("DocRef", "texto1", 5);
 
+        // deve ser possível adicionar um atalho ao doc2 referenciando o docref
+        dcUm.criarDocumento("Doc2");
+        dcUm.criarTexto("Doc2", "texto2", 5);
+        dcUm.criarAtalho("Doc2", "DocRef");
+        assertEquals("[texto2\n, texto1\n]", Arrays.toString(dcUm.exibirDocumento("Doc2")));
+
+        // então docref não poderá receber atalhos
+        dcUm.criarDocumento("Doc3");
+        dcUm.criarTexto("Doc3", "texto3", 5);
+        assertThrows(IllegalStateException.class, () -> dcUm.criarAtalho("DocRef", "Doc3"));
+
+        // removemos o atalho de doc2 que referencia docRef
+        dcUm.apagarElemento("Doc2", 1);
+        dcUm.criarAtalho("DocRef", "Doc3");
+
+        // então podemos adicionar atalhos ao docRef
+        assertEquals("[texto1\n, texto3\n]", Arrays.toString(dcUm.exibirDocumento("DocRef")));
+    }
+
+    @Test
+    void testaVisaoCompleta() {
+        dcUm.criarDocumento("Doc1");
+        dcUm.criarTexto("Doc1", "Elemento texto prioridade 1", 1);
+        dcUm.criarTermos("Doc1", "Elemento / termos / prioridade 4",4, "/", "nenhum");
+        dcUm.criarLista("Doc1", "Lista . prioridade . 3", 3, " . ", "*");
+        // Criamos a visão completa aqui para checar depois se ela é atualizada
+        assertEquals("""
+                [Elemento texto prioridade 1
+                , Total termos: 3
+                - Elemento ,  termos ,  prioridade 4
+                , * Lista
+                * prioridade
+                * 3
+                ]""", Arrays.toString(dcUm.exibirVisao(dcUm.criarVisaoCompleta("Doc1"))));
+        dcUm.criarTitulo("Doc1", "Titulo p5", 5, 2, true);
+        dcUm.criarDocumento("DocRef");
+        dcUm.criarTexto("DocRef", "Elemento texto prioridade 5", 5);
+        dcUm.criarAtalho("Doc1", "DocRef");
+        assertEquals("""
+                [Elemento texto prioridade 1
+                , Total termos: 3
+                - Elemento ,  termos ,  prioridade 4
+                , * Lista
+                * prioridade
+                * 3
+                , 2. Titulo p5 -- 2-TITULOP5
+                , Elemento texto prioridade 5
+                ]""", Arrays.toString(dcUm.exibirVisao(dcUm.criarVisaoCompleta("Doc1"))));
+
+    }
+    @Test
+    void testaVisaoResumida() {
+        dcUm.criarDocumento("Doc1");
+        dcUm.criarTexto("Doc1", "Elemento texto prioridade 1", 1);
+        dcUm.criarTermos("Doc1", "Elemento / termos / prioridade 4",4, "/", "nenhum");
+        dcUm.criarLista("Doc1", "Lista . prioridade . 3", 3, " . ", "*");
+        // Criamos a visão resumida aqui para checar depois se ela é atualizada
+        assertEquals("""
+                [Elemento texto prioridade 1
+                , Elemento  /  termos  /  prioridade 4
+                , Lista, prioridade, 3
+                ]""", Arrays.toString(dcUm.exibirVisao(dcUm.criarVisaoResumida("Doc1"))));
+        dcUm.criarTitulo("Doc1", "Titulo p5", 5, 2, true);
+        dcUm.criarDocumento("DocRef");
+        dcUm.criarTexto("DocRef", "Elemento texto prioridade 5", 5);
+        dcUm.criarAtalho("Doc1", "DocRef");
+        assertEquals("""
+                [Elemento texto prioridade 1
+                , Elemento  /  termos  /  prioridade 4
+                , Lista, prioridade, 3
+                , 2. Titulo p5
+                , Elemento texto prioridade 5
+                ]""", Arrays.toString(dcUm.exibirVisao(dcUm.criarVisaoResumida("Doc1"))));
+    }
+    @Test
+    void testaVisaoPrioritaria() {
+        dcUm.criarDocumento("Doc1");
+        dcUm.criarTexto("Doc1", "Elemento texto prioridade 1", 1);
+        dcUm.criarTermos("Doc1", "Elemento / termos / prioridade 4",4, "/", "nenhum");
+        dcUm.criarLista("Doc1", "Lista . prioridade . 3", 3, " . ", "*");
+        // Criamos a visão prioritaria aqui para checar depois se ela é atualizada
+        assertEquals("""
+                [Total termos: 3
+                - Elemento ,  termos ,  prioridade 4
+                ]""", Arrays.toString(dcUm.exibirVisao(dcUm.criarVisaoPrioritaria("Doc1", 4))));
+        dcUm.criarTitulo("Doc1", "Titulo p5", 5, 2, true);
+        dcUm.criarDocumento("DocRef");
+        dcUm.criarTexto("DocRef", "Elemento texto prioridade 5", 5);
+        dcUm.criarAtalho("Doc1", "DocRef");
+        assertEquals("""
+                [Total termos: 3
+                - Elemento ,  termos ,  prioridade 4
+                , 2. Titulo p5 -- 2-TITULOP5
+                , Elemento texto prioridade 5
+                ]""", Arrays.toString(dcUm.exibirVisao(dcUm.criarVisaoPrioritaria("Doc1", 4))));
+
+    }
+    @Test
+    void testaVisaoTitulo() {
+        dcUm.criarDocumento("Doc1");
+        dcUm.criarTexto("Doc1", "Elemento texto prioridade 1", 1);
+        dcUm.criarTermos("Doc1", "Elemento / termos / prioridade 4",4, "/", "nenhum");
+        dcUm.criarLista("Doc1", "Lista . prioridade . 3", 3, " . ", "*");
+        // Criamos a visão titulo aqui para checar depois se ela é atualizada
+        assertEquals("[]", Arrays.toString(dcUm.exibirVisao(dcUm.criarVisaoTitulo("Doc1"))));
+        dcUm.criarTitulo("Doc1", "Titulo p5", 5, 2, true);
+        dcUm.criarDocumento("DocRef");
+        dcUm.criarTexto("DocRef", "Elemento texto prioridade 5", 5);
+        dcUm.criarAtalho("Doc1", "DocRef");
+        assertEquals("[2. Titulo p5\n]", Arrays.toString(dcUm.exibirVisao(dcUm.criarVisaoTitulo("Doc1"))));
+    }
 }

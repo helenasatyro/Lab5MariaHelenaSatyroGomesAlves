@@ -3,6 +3,7 @@ package documin.documento;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 /**
  * Classe que implementa um elemento que é um conjunto de termos. O elemento termos tem
@@ -16,14 +17,13 @@ public class ElementoTermos extends Elemento {
      * Cria um elemento de termos.
      * @param valor termos separados pelo separador
      * @param prioridade do elemento, 1 a 5
-     * @param separador
+     * @param separador será usado para separar os termos da sting de valor
      * @param ordem ALFABÉTICA, TAMANHO, NENHUM
      */
     public ElementoTermos(String valor, int prioridade, String separador, Ordem ordem) {
         super(prioridade, valor);
         this.propriedades = new HashMap<>();
         // o pipe | em regex significa OR, então para usá-lo como separador é necessário escapá-lo
-        if (separador.equals("|")) separador = "\\|";
         this.propriedades.put("separador", separador);
         this.propriedades.put("ordem", ordem.toString());
     }
@@ -36,7 +36,7 @@ public class ElementoTermos extends Elemento {
      */
     @Override
     public String representacaoCompleta() {
-        String[] conteudo = this.valor.split(propriedades.get("separador"));
+        String[] conteudo = this.valor.split(Pattern.quote(propriedades.get("separador")));
 
         switch (propriedades.get("ordem")) {
             case "ALFABETICA" -> Arrays.sort(conteudo, String.CASE_INSENSITIVE_ORDER);
@@ -47,7 +47,7 @@ public class ElementoTermos extends Elemento {
         for (int i = 1; i < conteudo.length; i++) {
             retorno += ", " + conteudo[i];
         }
-        return retorno;
+        return retorno + "\n";
     }
 
     /**
@@ -57,7 +57,7 @@ public class ElementoTermos extends Elemento {
      */
     @Override
     public String representacaoCurta() {
-        String[] conteudo = valor.split(propriedades.get("separador"));
+        String[] conteudo = valor.split(Pattern.quote(propriedades.get("separador")));
 
         switch (propriedades.get("ordem")) {
             case "ALFABETICA" -> Arrays.sort(conteudo, String.CASE_INSENSITIVE_ORDER);
@@ -67,7 +67,7 @@ public class ElementoTermos extends Elemento {
         for (int i = 1; i < conteudo.length; i++) {
             retorno += " / " + conteudo[i];
         }
-        return retorno;
+        return retorno + "\n";
     }
 
 }
