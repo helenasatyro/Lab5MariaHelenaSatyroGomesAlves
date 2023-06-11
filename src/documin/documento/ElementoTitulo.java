@@ -5,6 +5,7 @@ import java.util.HashMap;
 /**
  * Classe que implementa um elmento do tipo título. Um título tem um valor (texto) uma prioridade(1 a 5)
  * um nível e pode ou não ser linkável.
+ * @author Maria Helena Sátyro Gomes Alves
  */
 public class ElementoTitulo extends Elemento {
     private HashMap<String, String> propriedades;

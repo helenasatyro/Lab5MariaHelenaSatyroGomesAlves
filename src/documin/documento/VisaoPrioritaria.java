@@ -4,6 +4,7 @@ package documin.documento;
  * Classe que implementa uma visualização de um documento. A visão prioritária consiste em um array
  * de strings em que cada uma é a representação completa dos elementos de um documenot cuja prioridade é
  * maior ou igual ao valor passado como parâmetro.
+ * @author Maria Helena Sátyro Gomes Alves
  */
 import java.util.ArrayList;
 

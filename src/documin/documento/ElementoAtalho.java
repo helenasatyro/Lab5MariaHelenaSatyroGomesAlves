@@ -4,6 +4,7 @@ package documin.documento;
  * Classe que representa um elemento atalho. Um elemento atalho serve para representar um documento dentro de outro.
  * O atalho tem sua prioridade calculada a partir das prioridades dos elementos do documento que referencia.
  * Um atalho não pode conter atalhos, e documentos que contenham atalhos não podem se tornar atalhos.
+ * @author Maria Helena Sátyro Gomes Alves
  */
 public class ElementoAtalho extends Elemento {
     private final Documento doc;

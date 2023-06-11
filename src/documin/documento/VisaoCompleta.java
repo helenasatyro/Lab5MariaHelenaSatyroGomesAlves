@@ -3,6 +3,7 @@ package documin.documento;
 /**
  * Classe que implementa uma visualização de um documento. A visão completa consiste em um array
  * de strings em que cada uma é a representação completa de um elemento do documento, em ordem.
+ * @author Maria Helena Sátyro Gomes Alves
  */
 public class VisaoCompleta implements Visivel {
     private Documento doc;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 /**
  * Classe que implementa uma visualização de um documento. A visão título consiste em um array
  * de strings em que cada uma é a representação resumida dos elementos do tipo título de um documento.
+ * @author Maria Helena Sátyro Gomes Alves
  */
 public class VisaoTitulo implements Visivel {
     private Documento doc;

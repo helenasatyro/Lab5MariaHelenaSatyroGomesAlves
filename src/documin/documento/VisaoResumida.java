@@ -2,6 +2,7 @@ package documin.documento;
 /**
  * Classe que implementa uma visualização de um documento. A visão resumida consiste em um array
  * de strings em que cada uma é a representação resumida de um elemento do documento, em ordem.
+ * @author Maria Helena Sátyro Gomes Alves
  */
 public class VisaoResumida implements Visivel {
     private final Documento doc;

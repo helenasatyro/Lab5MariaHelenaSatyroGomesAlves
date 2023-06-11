@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
  * Classe que implementa um elemento que é um conjunto de termos. O elemento termos tem
  * uma string de termos separados por um separador, uma prioridade (1 a 5) e pode ter uma ordem para s termos;
  * Alfabética, Tamanho ou Nenhuma
+ * @author Maria Helena Sátyro Gomes Alves
  */
 public class ElementoTermos extends Elemento {
     private HashMap<String, String> propriedades;

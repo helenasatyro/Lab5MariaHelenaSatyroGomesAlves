@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.NoSuchElementException;
 /**
  *  Classe que agrega funções do sistema Documin.
+ *  @author Maria Helena Sátyro Gomes Alves
  */
 public class DocuminController {
 

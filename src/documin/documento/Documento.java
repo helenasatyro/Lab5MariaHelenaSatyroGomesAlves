@@ -6,6 +6,8 @@ import java.util.Objects;
 /**
  * Classe que representa um documento. Um documento é composto de diversos tipos de elemento, pode terseu tamanho limitado ou não,
  * ele é identificado unicamente pelo seu título. Um documento pode ser atalho ou conter atalhos, mas nunca so dois ao mesmo tempo.
+ *
+ * @author Maria Helena Sátyro Gomes Alves
  */
 public class Documento {
     private String titulo;

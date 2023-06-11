@@ -3,6 +3,7 @@ package documin.documento;
 /**
  * Classe que representa um elemento básico de texto que pode ser adicionado a um documento.
  * Um elemento deve ter uma prioridade (1 a 5 inclusive) e um valor.
+ * @author Maria Helena Sátyro Gomes Alves
  */
 public class Elemento {
     protected int prioridade;

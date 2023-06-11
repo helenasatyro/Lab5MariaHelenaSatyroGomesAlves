@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 /**
  * Classe que implementa um element no formato de lista. Uma lista tem elementos,
  * um separador, um caractere para representação e uma prioridade.
+ * @author Maria Helena Sátyro Gomes Alves
  */
 public class ElementoLista extends Elemento {
     private HashMap<String, String> propriedades;
